@@ -128,6 +128,20 @@ Built:    2026-03-28T14:22:00Z
 
 This gives users and support teams full traceability without breaking artifact immutability.
 
+### Traceability Without Release Notes
+
+Stable releases have changelogs and release notes. Dev channel builds do not — but they are still fully traceable.
+
+Given a build identity, anyone can reconstruct what changed:
+
+```
+git log <previous-sha>..abc1234 --oneline
+```
+
+Conventional commit messages serve as the summary: `feat: add export command`, `fix: prevent null crash in importer`. The git history **is** the feature list for dev builds.
+
+The framework guarantees that every build is traceable to its source via the embedded commit SHA. How teams surface that information to testers — Slack bots, CI dashboards, deployment notifications, or just asking in standup — is a team communication concern, not a workflow concern. The framework provides the traceability; the team chooses the mechanism.
+
 ### Examples
 
 | Type | Format |

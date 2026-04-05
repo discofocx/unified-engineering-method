@@ -8,11 +8,11 @@ Runtime targets, release audiences, and risk lanes.
 
 Runtime targets. Where something runs.
 
-| Environment | Purpose | Deployment |
-|---|---|---|
-| **Dev** | Fast iteration | Automatic from `main` |
-| **Staging** | Candidate validation | Manual or gated promotion |
-| **Production** | Live traffic | Gated promotion from staging |
+| Environment    | Purpose              | Deployment                   |
+| -------------- | -------------------- | ---------------------------- |
+| **Dev**        | Fast iteration       | Automatic from `main`        |
+| **Staging**    | Candidate validation | Manual or gated promotion    |
+| **Production** | Live traffic         | Gated promotion from staging |
 
 ### Rules
 
@@ -28,20 +28,20 @@ Release audience and risk lanes. Who gets something and how risky it is.
 
 Channels are **quality-gated** — a build gets promoted when it passes checks, not on a schedule.
 
-| Channel | Exposure | Ceremony | Tier |
-|---|---|---|---|
-| **Dev** | Team only | Low — may track every merge | All |
-| **Canary** | Limited production users | Medium — requires objective checks | Tier 3 |
-| **Beta** | Opt-in or limited audience | Medium — versioned prereleases | Tier 2+ |
-| **Stable** | General availability | High — tagged, noted, published | All |
+| Channel    | Exposure                   | Ceremony                           | Tier    |
+| ---------- | -------------------------- | ---------------------------------- | ------- |
+| **Dev**    | Team only                  | Low — may track every merge        | All     |
+| **Canary** | Limited production users   | Medium — requires objective checks | Tier 3  |
+| **Beta**   | Opt-in or limited audience | Medium — versioned prereleases     | Tier 2+ |
+| **Stable** | General availability       | High — tagged, noted, published    | All     |
 
 ### Channel Sets by Tier
 
-| Tier | Channels | Rationale |
-|---|---|---|
-| **Solo / Personal** | `dev` + `stable` | No users to protect with intermediate gates |
-| **Solo / Consultancy** | `dev` + `beta` + `stable` | Beta gives clients a preview; no traffic to split for canary |
-| **Small Team** | `dev` + `canary` + `beta` + `stable` | Full model — canary enables low-blast-radius production validation |
+| Tier                   | Channels                             | Rationale                                                          |
+| ---------------------- | ------------------------------------ | ------------------------------------------------------------------ |
+| **Solo / Personal**    | `dev` + `stable`                     | No users to protect with intermediate gates                        |
+| **Solo / Consultancy** | `dev` + `beta` + `stable`            | Beta gives clients a preview; no traffic to split for canary       |
+| **Small Team**         | `dev` + `canary` + `beta` + `stable` | Full model — canary enables low-blast-radius production validation |
 
 ### Mapping Versions to Channels
 

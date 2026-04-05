@@ -18,9 +18,9 @@ This is the module that governs what happens before code reaches a pull request.
 
 ## Documents
 
-| Document | What it covers |
-|---|---|
-| [Toolchain](TOOLCHAIN.md) | Toolchain selection doctrine — categories, not brands |
+| Document                    | What it covers                                                 |
+| --------------------------- | -------------------------------------------------------------- |
+| [Toolchain](TOOLCHAIN.md)   | Toolchain selection doctrine — categories, not brands          |
 | [Validation](VALIDATION.md) | Golden commands, canonical validation surface, local/CI parity |
 
 The agent execution loop and bounded task doctrine are covered in this README below.
@@ -41,7 +41,7 @@ This module operationalizes that principle. Instead of telling agents (or humans
 
 Whether a human or an agent is doing the work, the healthiest construction pattern is the same bounded loop:
 
-```
+```text
 1. Select issue          — pick a specific, scoped unit of work
 2. Inspect codebase      — understand current state, patterns, relevant files
 3. State plan            — articulate what will change and why

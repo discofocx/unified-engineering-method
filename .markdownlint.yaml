@@ -1,0 +1,16 @@
+# Markdownlint configuration for the Engineering OS docs
+
+# Disable line length — prose docs have natural paragraph flow
+MD013: false
+
+# Allow multiple headings with same content (common across modules)
+MD024: false
+
+# Allow trailing punctuation in headings (e.g., "What About Nightly?")
+MD026: false
+
+# Allow inline HTML if needed
+MD033: false
+
+# Allow bare URLs
+MD034: false

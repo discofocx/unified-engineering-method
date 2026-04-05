@@ -18,10 +18,10 @@ This module governs the day-to-day mechanics of moving code from a developer's b
 
 ## Documents
 
-| Document | What it covers |
-|---|---|
+| Document                | What it covers                                           |
+| ----------------------- | -------------------------------------------------------- |
 | [Workflow](WORKFLOW.md) | Branching, PRs, commits, issues, merges — the daily loop |
-| [Releases](RELEASES.md) | Tags, versions, release flow, hotfixes, changelog, LTS |
+| [Releases](RELEASES.md) | Tags, versions, release flow, hotfixes, changelog, LTS   |
 
 ---
 

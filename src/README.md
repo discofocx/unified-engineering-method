@@ -42,12 +42,12 @@ Good agentic coding is not "prompt better." It is "design the environment so the
 
 A healthy engineering system separates four concerns:
 
-| Concern | Responsibility | Module |
-|---|---|---|
-| **Construction** | How work is framed, constrained, and validated during building | [Construction](modules/construction/) |
-| **Change Management** | How changes are tracked, reviewed, and integrated | [Change Management](modules/change-management/) |
-| **Delivery** | How artifacts move through environments and channels | [Delivery](modules/delivery/) |
-| **Knowledge** | How intent, decisions, and context persist | [Knowledge](modules/knowledge/) |
+| Concern               | Responsibility                                                 | Module                                          |
+| --------------------- | -------------------------------------------------------------- | ----------------------------------------------- |
+| **Construction**      | How work is framed, constrained, and validated during building | [Construction](modules/construction/)           |
+| **Change Management** | How changes are tracked, reviewed, and integrated              | [Change Management](modules/change-management/) |
+| **Delivery**          | How artifacts move through environments and channels           | [Delivery](modules/delivery/)                   |
+| **Knowledge**         | How intent, decisions, and context persist                     | [Knowledge](modules/knowledge/)                 |
 
 Once those are clearly separated, everything becomes coherent.
 
@@ -75,11 +75,11 @@ These are non-negotiable principles. They apply across all modules. See [Doctrin
 
 The framework scales across three operational tiers. Every project falls into one:
 
-| Tier | Description | Coordination |
-|---|---|---|
-| **Solo / Personal** | No external users. Low ceremony. | Self-directed |
-| **Solo / Consultancy** | Real users or client. Traceability matters. | Self-review with audit trail |
-| **Small Team** | Multiple developers, real users. Coordination and rollout. | Peer review, channels |
+| Tier                   | Description                                                | Coordination                 |
+| ---------------------- | ---------------------------------------------------------- | ---------------------------- |
+| **Solo / Personal**    | No external users. Low ceremony.                           | Self-directed                |
+| **Solo / Consultancy** | Real users or client. Traceability matters.                | Self-review with audit trail |
+| **Small Team**         | Multiple developers, real users. Coordination and rollout. | Peer review, channels        |
 
 Projects move up tiers as they grow. The framework adds ceremony without restructuring. See [Adapting](ADAPTING.md) for full details.
 
@@ -89,11 +89,11 @@ Projects move up tiers as they grow. The framework adds ceremony without restruc
 
 Not all projects deserve the same strictness on day one:
 
-| Class | Name | Ceremony |
-|---|---|---|
-| **0** | Scratchpad | Minimal. Formatter + basic structure. |
-| **1** | Prototype | Linter + tests. Issues optional. |
-| **2** | Product Seed | Full toolchain. Issues required. CI wired. |
+| Class | Name               | Ceremony                                    |
+| ----- | ------------------ | ------------------------------------------- |
+| **0** | Scratchpad         | Minimal. Formatter + basic structure.       |
+| **1** | Prototype          | Linter + tests. Issues optional.            |
+| **2** | Product Seed       | Full toolchain. Issues required. CI wired.  |
 | **3** | Long-Lived Product | Everything. ADRs. Release channels. Review. |
 
 Class governs toolchain and ceremony. Tier governs coordination and review. They are orthogonal. See [Doctrine](DOCTRINE.md) for the full classification model.
@@ -102,15 +102,15 @@ Class governs toolchain and ceremony. Tier governs coordination and review. They
 
 ## Modules
 
-| Module | What it covers |
-|---|---|
-| [Doctrine](DOCTRINE.md) | First principles, project classification, the constraint-first philosophy |
-| [Construction](modules/construction/) | Toolchain selection, validation surface, agent execution loop, bounded tasks |
+| Module                                          | What it covers                                                               |
+| ----------------------------------------------- | ---------------------------------------------------------------------------- |
+| [Doctrine](DOCTRINE.md)                         | First principles, project classification, the constraint-first philosophy    |
+| [Construction](modules/construction/)           | Toolchain selection, validation surface, agent execution loop, bounded tasks |
 | [Change Management](modules/change-management/) | Branching, PRs, commits, issues, merges, releases, tags, hotfixes, changelog |
-| [Delivery](modules/delivery/) | Artifacts, promotion, environments, channels, CI/CD, rollback |
-| [Knowledge](modules/knowledge/) | ADRs, persistent planning, documentation, context management |
-| [Glossary](GLOSSARY.md) | Ubiquitous language — shared vocabulary for the entire framework |
-| [Adapting](ADAPTING.md) | Operational tiers, project classes, product type variations |
+| [Delivery](modules/delivery/)                   | Artifacts, promotion, environments, channels, CI/CD, rollback                |
+| [Knowledge](modules/knowledge/)                 | ADRs, persistent planning, documentation, context management                 |
+| [Glossary](GLOSSARY.md)                         | Ubiquitous language — shared vocabulary for the entire framework             |
+| [Adapting](ADAPTING.md)                         | Operational tiers, project classes, product type variations                  |
 
 ---
 

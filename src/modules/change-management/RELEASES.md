@@ -10,7 +10,7 @@ For artifact management, promotion, environments, channels, and CI/CD, see [Deli
 
 Use SemVer or something close. You do not have to worship it, but it is useful as a shared language.
 
-```
+```text
 MAJOR.MINOR.PATCH
 ```
 
@@ -24,7 +24,7 @@ For internal tools, you can be more pragmatic, but still keep the shape.
 
 Use when needed. They map naturally to channels.
 
-```
+```text
 v1.8.0-alpha.1
 v1.8.0-beta.3
 v1.8.0-rc.1
@@ -36,7 +36,7 @@ v1.8.0-rc.1
 
 Use annotated tags for releases.
 
-```
+```text
 v1.4.0
 v1.4.1
 v2.0.0-beta.2
@@ -51,7 +51,7 @@ Tags represent release points, not random milestones.
 
 The full sequence from merge to stable:
 
-```
+```text
 1. Decide release candidate from main
 2. Tag prerelease if needed (v1.4.0-rc.1)
 3. Deploy same artifact to staging
@@ -84,7 +84,7 @@ This is where a lot of frameworks break down.
 
 **Tier 2+ (Consultancy, Small Team):** Full hotfix flow:
 
-```
+```text
 1. Branch from the production tag or current stable commit
 2. Make the minimal fix
 3. Validate
@@ -122,7 +122,7 @@ The changelog is generated **at tag time**, not at merge time. It covers everyth
 
 Changelog generation is part of the promotion pipeline, not the build pipeline. Tooling like `git-cliff`, GitHub's auto-generated release notes, or equivalent derives the changelog from the commit history between tags.
 
-```
+```bash
 git log v1.5.0..v1.6.0 --oneline
 ```
 
@@ -134,7 +134,7 @@ This is the input. The output is a structured, human-readable summary grouped by
 
 You only need release branches if you support multiple versions at the same time.
 
-```
+```text
 main         → next version
 release/1.8  → maintained stable line
 release/1.7  → emergency support only

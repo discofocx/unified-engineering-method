@@ -31,21 +31,21 @@ The version displayed to the user depends on the deployment context, not just wh
 
 **The pattern:** embed build identity in the artifact, resolve release identity from the deployment context at runtime.
 
-| Source | What it provides | When it is known |
-|---|---|---|
-| Embedded in artifact | Commit SHA, build number, build timestamp | Build time |
-| Deployment context | Release version, channel label | Promotion / deploy time |
-| Display to user | Composed from both | Runtime |
+| Source               | What it provides                          | When it is known        |
+| -------------------- | ----------------------------------------- | ----------------------- |
+| Embedded in artifact | Commit SHA, build number, build timestamp | Build time              |
+| Deployment context   | Release version, channel label            | Promotion / deploy time |
+| Display to user      | Composed from both                        | Runtime                 |
 
 **Deployment context** means: environment variable, sidecar metadata file, container label, package manifest, installer metadata, config endpoint, or similar. The mechanism varies by product type, but the principle is constant — the artifact reads its release identity from the context it is deployed into, not from its own binary.
 
 ### What the user sees by channel
 
-| Channel | Version display | Example |
-|---|---|---|
-| **Dev** | Build identity only | `build 847 (abc1234)` or `0.0.0-dev+abc1234` |
-| **Beta** | Prerelease version | `1.6.0-beta.2` |
-| **Stable** | Release version | `1.6.0` |
+| Channel    | Version display     | Example                                      |
+| ---------- | ------------------- | -------------------------------------------- |
+| **Dev**    | Build identity only | `build 847 (abc1234)` or `0.0.0-dev+abc1234` |
+| **Beta**   | Prerelease version  | `1.6.0-beta.2`                               |
+| **Stable** | Release version     | `1.6.0`                                      |
 
 Dev users see build coordinates. That is normal and expected — they are on the bleeding edge and the build has no release identity yet. Stable users see a clean semantic version because the deployment context provides it.
 
@@ -53,13 +53,13 @@ Dev users see build coordinates. That is normal and expected — they are on the
 
 The exact mechanism depends on product type:
 
-| Product type | Mechanism |
-|---|---|
-| Server / container | Environment variable or sidecar file injected at deploy time |
-| CLI tool | Version file or metadata baked into the distribution package (not the binary) |
-| Desktop app | Installer or update manifest carries the version |
-| Mobile app | App store metadata + build number |
-| Library / package | Package manifest (`package.json`, `pyproject.toml`, etc.) |
+| Product type       | Mechanism                                                                     |
+| ------------------ | ----------------------------------------------------------------------------- |
+| Server / container | Environment variable or sidecar file injected at deploy time                  |
+| CLI tool           | Version file or metadata baked into the distribution package (not the binary) |
+| Desktop app        | Installer or update manifest carries the version                              |
+| Mobile app         | App store metadata + build number                                             |
+| Library / package  | Package manifest (`package.json`, `pyproject.toml`, etc.)                     |
 
 For libraries and packages, the package manifest **is** the deployment context — it is updated at promotion time before publishing, and the code reads the version from it at runtime.
 
@@ -67,7 +67,7 @@ For libraries and packages, the package manifest **is** the deployment context �
 
 At runtime, the application composes what it shows the user:
 
-```
+```text
 if deployment_context has release_version:
     display = release_version           # "1.6.0"
 else:
@@ -76,7 +76,7 @@ else:
 
 Optionally, always include build identity in detailed views (e.g., "About" dialogs):
 
-```
+```text
 Version:  1.6.0
 Build:    847
 Commit:   abc1234
@@ -91,7 +91,7 @@ Stable releases have changelogs and release notes. Dev channel builds do not —
 
 Given a build identity, anyone can reconstruct what changed:
 
-```
+```bash
 git log <previous-sha>..abc1234 --oneline
 ```
 
@@ -101,13 +101,13 @@ The framework guarantees that every build is traceable to its source via the emb
 
 ### Examples
 
-| Type | Format |
-|---|---|
-| Docker image | `sha-abc1234`, aliased to `1.6.0` and `stable` at promotion |
-| CLI binary | `tool-sha-abc1234-linux-amd64.zip`, aliased to `tool-v1.6.0-linux-amd64.zip` |
+| Type         | Format                                                                          |
+| ------------ | ------------------------------------------------------------------------------- |
+| Docker image | `sha-abc1234`, aliased to `1.6.0` and `stable` at promotion                     |
+| CLI binary   | `tool-sha-abc1234-linux-amd64.zip`, aliased to `tool-v1.6.0-linux-amd64.zip`    |
 | Python wheel | Built with version `0.0.0-dev`, published with version `1.6.0` in package index |
-| Installer | Wraps the same binary; installer metadata carries the release version |
-| Mobile build | Build number is permanent; version string updated in store metadata |
+| Installer    | Wraps the same binary; installer metadata carries the release version           |
+| Mobile build | Build number is permanent; version string updated in store metadata             |
 
 ### Rules
 
@@ -119,12 +119,12 @@ The framework guarantees that every build is traceable to its source via the emb
 
 ### Identity
 
-| Identifier | What it tracks | When assigned |
-|---|---|---|
-| Git commit | Source | Commit time |
-| Build identity | Artifact provenance | Build time |
-| Tag | Release intent | Promotion time |
-| Alias | Release identity on the artifact | Promotion time |
+| Identifier     | What it tracks                   | When assigned  |
+| -------------- | -------------------------------- | -------------- |
+| Git commit     | Source                           | Commit time    |
+| Build identity | Artifact provenance              | Build time     |
+| Tag            | Release intent                   | Promotion time |
+| Alias          | Release identity on the artifact | Promotion time |
 
 These are related but not identical. The gap between build time and promotion time is where the aliasing model lives.
 
@@ -136,7 +136,7 @@ These are related but not identical. The gap between build time and promotion ti
 
 Do not rebuild separately for staging and production if you can avoid it.
 
-```
+```text
 1. Commit merges to main
 2. CI builds artifact once
 3. Artifact gets a unique build ID / commit SHA
@@ -154,7 +154,7 @@ The artifact produced at build time is the **only** artifact. Promotion adds new
 
 When a dev build gets promoted to stable:
 
-```
+```text
 1. Commit abc1234 merges to main
 2. CI builds artifact: myapp:sha-abc1234
 3. Artifact deploys to dev channel

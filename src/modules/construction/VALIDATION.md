@@ -12,13 +12,13 @@ A **golden command** is a canonical entry point into the project's validation su
 
 Every project should expose these commands:
 
-| Command | Purpose |
-|---|---|
-| `make fmt` | Run the formatter (fix mode) |
-| `make lint` | Run the linter |
-| `make typecheck` | Run the type checker |
-| `make test` | Run the test suite |
-| `make ci` | Run all of the above in sequence |
+| Command          | Purpose                          |
+| ---------------- | -------------------------------- |
+| `make fmt`       | Run the formatter (fix mode)     |
+| `make lint`      | Run the linter                   |
+| `make typecheck` | Run the type checker             |
+| `make test`      | Run the test suite               |
+| `make ci`        | Run all of the above in sequence |
 
 The exact mechanism does not have to be `make`. It can be:
 
@@ -57,13 +57,13 @@ Running `make ci` — or its equivalent — is the gate before any PR or commit 
 
 ### What the Validation Surface Proves
 
-| Check | What it proves |
-|---|---|
-| Formatter passes | Code style is consistent |
-| Linter passes | No known bad patterns, no obvious mistakes |
-| Type checker passes | Interfaces are honored, types are sound |
-| Tests pass | Behavior is correct, regressions are caught |
-| Build succeeds | The project compiles / packages correctly |
+| Check               | What it proves                              |
+| ------------------- | ------------------------------------------- |
+| Formatter passes    | Code style is consistent                    |
+| Linter passes       | No known bad patterns, no obvious mistakes  |
+| Type checker passes | Interfaces are honored, types are sound     |
+| Tests pass          | Behavior is correct, regressions are caught |
+| Build succeeds      | The project compiles / packages correctly   |
 
 If all golden commands pass, the change is **mechanically valid**. It may still have design problems or incorrect logic that tests do not cover — but it has passed every automated check the project offers.
 
@@ -111,7 +111,7 @@ If a developer can run `make ci` locally and get the same pass/fail result as th
 
 In the [agent execution loop](README.md), validation is step 5:
 
-```
+```text
 1. Select issue
 2. Inspect codebase
 3. State plan

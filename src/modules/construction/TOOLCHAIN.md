@@ -16,12 +16,12 @@ The toolchain is the mechanism that turns principles into enforcement. Without i
 
 Every project that ships code needs tools in these four categories:
 
-| Category | What it enforces | Examples |
-|---|---|---|
-| **Formatter** | Consistent code style, layout, whitespace | `ruff format`, `rustfmt`, `prettier`, `swift-format` |
-| **Linter** | Correctness, best practices, common mistakes | `ruff check`, `clippy`, `eslint`, `swiftlint` |
-| **Type checker** | Type discipline, interface contracts | `mypy`, `pyright`, `tsc`, `the Rust compiler` |
-| **Test runner** | Behavioral correctness, regression prevention | `pytest`, `cargo test`, `vitest`, `jest`, `XCTest` |
+| Category         | What it enforces                              | Examples                                             |
+| ---------------- | --------------------------------------------- | ---------------------------------------------------- |
+| **Formatter**    | Consistent code style, layout, whitespace     | `ruff format`, `rustfmt`, `prettier`, `swift-format` |
+| **Linter**       | Correctness, best practices, common mistakes  | `ruff check`, `clippy`, `eslint`, `swiftlint`        |
+| **Type checker** | Type discipline, interface contracts          | `mypy`, `pyright`, `tsc`, `the Rust compiler`        |
+| **Test runner**  | Behavioral correctness, regression prevention | `pytest`, `cargo test`, `vitest`, `jest`, `XCTest`   |
 
 These are **categories, not brands**. The framework prescribes that you must have one in each category. It does not prescribe which one.
 
@@ -33,54 +33,54 @@ These are examples, not mandates. Choose what fits your ecosystem and team.
 
 ### Python
 
-| Category | Tool | Config |
-|---|---|---|
-| Package manager | `uv` | `pyproject.toml` |
-| Formatter | `ruff format` | `ruff.toml` or `pyproject.toml` |
-| Linter | `ruff check` | `ruff.toml` or `pyproject.toml` |
-| Type checker | `mypy` or `pyright` | `pyproject.toml` or `pyrightconfig.json` |
-| Test runner | `pytest` | `pyproject.toml` |
-| Pre-commit | `pre-commit` | `.pre-commit-config.yaml` |
+| Category        | Tool                | Config                                   |
+| --------------- | ------------------- | ---------------------------------------- |
+| Package manager | `uv`                | `pyproject.toml`                         |
+| Formatter       | `ruff format`       | `ruff.toml` or `pyproject.toml`          |
+| Linter          | `ruff check`        | `ruff.toml` or `pyproject.toml`          |
+| Type checker    | `mypy` or `pyright` | `pyproject.toml` or `pyrightconfig.json` |
+| Test runner     | `pytest`            | `pyproject.toml`                         |
+| Pre-commit      | `pre-commit`        | `.pre-commit-config.yaml`                |
 
 ### Rust
 
-| Category | Tool | Config |
-|---|---|---|
-| Package manager | `cargo` | `Cargo.toml` |
-| Formatter | `rustfmt` | `rustfmt.toml` |
-| Linter | `clippy` | `clippy.toml` or `Cargo.toml` |
-| Type checker | Rust compiler | Built-in |
-| Test runner | `cargo test` | Built-in |
+| Category        | Tool          | Config                        |
+| --------------- | ------------- | ----------------------------- |
+| Package manager | `cargo`       | `Cargo.toml`                  |
+| Formatter       | `rustfmt`     | `rustfmt.toml`                |
+| Linter          | `clippy`      | `clippy.toml` or `Cargo.toml` |
+| Type checker    | Rust compiler | Built-in                      |
+| Test runner     | `cargo test`  | Built-in                      |
 
 ### TypeScript
 
-| Category | Tool | Config |
-|---|---|---|
-| Package manager | `pnpm` or `npm` | `package.json` |
-| Formatter | `prettier` | `.prettierrc` |
-| Linter | `eslint` | `eslint.config.js` |
-| Type checker | `tsc` | `tsconfig.json` |
-| Test runner | `vitest` or `jest` | `vitest.config.ts` or `jest.config.ts` |
+| Category        | Tool               | Config                                 |
+| --------------- | ------------------ | -------------------------------------- |
+| Package manager | `pnpm` or `npm`    | `package.json`                         |
+| Formatter       | `prettier`         | `.prettierrc`                          |
+| Linter          | `eslint`           | `eslint.config.js`                     |
+| Type checker    | `tsc`              | `tsconfig.json`                        |
+| Test runner     | `vitest` or `jest` | `vitest.config.ts` or `jest.config.ts` |
 
 ### Swift
 
-| Category | Tool | Config |
-|---|---|---|
-| Package manager | Swift Package Manager | `Package.swift` |
-| Formatter | `swift-format` | `.swift-format` |
-| Linter | `swiftlint` | `.swiftlint.yml` |
-| Type checker | Swift compiler | Built-in |
-| Test runner | `XCTest` or Swift Testing | Built-in |
+| Category        | Tool                      | Config           |
+| --------------- | ------------------------- | ---------------- |
+| Package manager | Swift Package Manager     | `Package.swift`  |
+| Formatter       | `swift-format`            | `.swift-format`  |
+| Linter          | `swiftlint`               | `.swiftlint.yml` |
+| Type checker    | Swift compiler            | Built-in         |
+| Test runner     | `XCTest` or Swift Testing | Built-in         |
 
 ### Go
 
-| Category | Tool | Config |
-|---|---|---|
-| Package manager | `go mod` | `go.mod` |
-| Formatter | `gofmt` / `goimports` | Built-in |
-| Linter | `golangci-lint` | `.golangci.yml` |
-| Type checker | Go compiler | Built-in |
-| Test runner | `go test` | Built-in |
+| Category        | Tool                  | Config          |
+| --------------- | --------------------- | --------------- |
+| Package manager | `go mod`              | `go.mod`        |
+| Formatter       | `gofmt` / `goimports` | Built-in        |
+| Linter          | `golangci-lint`       | `.golangci.yml` |
+| Type checker    | Go compiler           | Built-in        |
+| Test runner     | `go test`             | Built-in        |
 
 ---
 
@@ -118,12 +118,12 @@ Pre-commit hooks are a convenience, not a security boundary. CI remains the auth
 
 ## When to Add vs. When to Skip
 
-| Project Class | Formatter | Linter | Type Checker | Test Runner |
-|---|---|---|---|---|
-| **0 — Scratchpad** | Yes | Optional | Optional | Optional |
-| **1 — Prototype** | Yes | Yes | Optional | Yes |
-| **2 — Product Seed** | Yes | Yes | Yes | Yes |
-| **3 — Long-Lived Product** | Yes | Yes | Yes | Yes |
+| Project Class              | Formatter | Linter   | Type Checker | Test Runner |
+| -------------------------- | --------- | -------- | ------------ | ----------- |
+| **0 — Scratchpad**         | Yes       | Optional | Optional     | Optional    |
+| **1 — Prototype**          | Yes       | Yes      | Optional     | Yes         |
+| **2 — Product Seed**       | Yes       | Yes      | Yes          | Yes         |
+| **3 — Long-Lived Product** | Yes       | Yes      | Yes          | Yes         |
 
 The formatter is never optional. Consistent formatting costs nothing and prevents the most common category of noise in diffs and reviews.
 

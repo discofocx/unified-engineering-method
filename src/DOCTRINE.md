@@ -96,12 +96,12 @@ Write for the maintainer who arrives with no prior conversation history.
 
 Not all projects deserve the same level of ceremony on day one. The framework scales by **project class**.
 
-| Class | Name | Description | Typical Ceremony |
-|---|---|---|---|
-| **0** | Scratchpad | Throwaway experiments, spikes, learning exercises | Minimal. Formatter + basic structure. |
-| **1** | Prototype | Real structure, basic toolchain, limited expected lifespan | Linter + tests. Issues optional. |
-| **2** | Product Seed | Intended to ship or serve users. Full toolchain from the start. | Full validation surface. Issues required. CI wired. |
-| **3** | Long-Lived Product | Multiple contributors, real users, durability matters | Everything. ADRs. Release channels. Review. |
+| Class | Name               | Description                                                     | Typical Ceremony                                    |
+| ----- | ------------------ | --------------------------------------------------------------- | --------------------------------------------------- |
+| **0** | Scratchpad         | Throwaway experiments, spikes, learning exercises               | Minimal. Formatter + basic structure.               |
+| **1** | Prototype          | Real structure, basic toolchain, limited expected lifespan      | Linter + tests. Issues optional.                    |
+| **2** | Product Seed       | Intended to ship or serve users. Full toolchain from the start. | Full validation surface. Issues required. CI wired. |
+| **3** | Long-Lived Product | Multiple contributors, real users, durability matters           | Everything. ADRs. Release channels. Review.         |
 
 ### Rules
 
@@ -125,12 +125,12 @@ Class governs how much toolchain and ceremony. Tier governs how much coordinatio
 
 A healthy engineering system separates these concerns:
 
-| Concern | Responsibility | Module |
-|---|---|---|
-| **Construction** | How work is framed, constrained, and validated during building | [Construction](modules/construction/) |
-| **Change management** | How changes are tracked, reviewed, and integrated | [Change Management](modules/change-management/) |
-| **Delivery** | How artifacts move through environments and channels | [Delivery](modules/delivery/) |
-| **Knowledge** | How intent, decisions, and context persist | [Knowledge](modules/knowledge/) |
+| Concern               | Responsibility                                                 | Module                                          |
+| --------------------- | -------------------------------------------------------------- | ----------------------------------------------- |
+| **Construction**      | How work is framed, constrained, and validated during building | [Construction](modules/construction/)           |
+| **Change management** | How changes are tracked, reviewed, and integrated              | [Change Management](modules/change-management/) |
+| **Delivery**          | How artifacts move through environments and channels           | [Delivery](modules/delivery/)                   |
+| **Knowledge**         | How intent, decisions, and context persist                     | [Knowledge](modules/knowledge/)                 |
 
 The unifying principles across all four:
 

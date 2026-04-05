@@ -21,15 +21,15 @@ Software projects accumulate intent over time: why was this built this way? Why 
 
 This knowledge lives somewhere. The question is where:
 
-| Where it lives | Durability | Discoverability | Risk |
-|---|---|---|---|
-| Someone's memory | Gone when they leave | Zero for others | High |
-| Chat history | Gone when session ends | Zero outside session | High |
-| Model context | Gone at context boundary | Zero for next agent | High |
-| Commit messages | Permanent | Medium (requires search) | Low |
-| Issue descriptions | Permanent | High (linked to work) | Low |
-| ADRs in repo | Permanent | High (indexed, searchable) | Low |
-| Docs in repo | Permanent | High | Low |
+| Where it lives     | Durability               | Discoverability            | Risk |
+| ------------------ | ------------------------ | -------------------------- | ---- |
+| Someone's memory   | Gone when they leave     | Zero for others            | High |
+| Chat history       | Gone when session ends   | Zero outside session       | High |
+| Model context      | Gone at context boundary | Zero for next agent        | High |
+| Commit messages    | Permanent                | Medium (requires search)   | Low  |
+| Issue descriptions | Permanent                | High (linked to work)      | Low  |
+| ADRs in repo       | Permanent                | High (indexed, searchable) | Low  |
+| Docs in repo       | Permanent                | High                       | Low  |
 
 The pattern is clear: **persistent, in-repo, linked-to-work artifacts win.**
 
@@ -67,15 +67,19 @@ Keep it simple:
 # ADR-NNN: Title
 
 ## Status
+
 Accepted / Superseded by ADR-NNN / Deprecated
 
 ## Context
+
 What is the situation? What forces are at play?
 
 ## Decision
+
 What did we choose?
 
 ## Consequences
+
 What follows from this choice — both good and limiting?
 ```
 
@@ -89,12 +93,12 @@ Plans are the bridge between intent and execution. The question is always: where
 
 ### The Rule of Thumb
 
-| Plan scope | Where it lives |
-|---|---|
-| This task, this session | Model context or local notes — ephemeral is fine |
-| This feature, multiple sessions | GitHub issue or milestone — must persist |
-| This architectural direction | ADR — must be in repo |
-| This release | Release issue or milestone — must be tracked |
+| Plan scope                      | Where it lives                                   |
+| ------------------------------- | ------------------------------------------------ |
+| This task, this session         | Model context or local notes — ephemeral is fine |
+| This feature, multiple sessions | GitHub issue or milestone — must persist         |
+| This architectural direction    | ADR — must be in repo                            |
+| This release                    | Release issue or milestone — must be tracked     |
 
 ### Anti-Patterns
 

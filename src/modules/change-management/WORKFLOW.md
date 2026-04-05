@@ -30,7 +30,7 @@ This ages much better than classic GitFlow for modern CI/CD-heavy work.
 
 Keep it boring and systematic. Include the issue ID when possible.
 
-```
+```text
 feature/123-add-user-search
 fix/287-null-check-on-login
 chore/315-upgrade-openapi-generator
@@ -82,7 +82,7 @@ Branch is deleted immediately after merge.
 
 Use conventional commits or something close:
 
-```
+```text
 feat: add export command
 fix: prevent null crash in importer
 chore: upgrade ruff config
@@ -93,15 +93,15 @@ Conventional commits enable automated changelogs and release notes. Versioning a
 
 ### Prefixes
 
-| Prefix | Meaning |
-|---|---|
-| `feat` | New feature |
-| `fix` | Bug fix |
-| `chore` | Maintenance, tooling, dependencies |
-| `docs` | Documentation only |
+| Prefix     | Meaning                                                 |
+| ---------- | ------------------------------------------------------- |
+| `feat`     | New feature                                             |
+| `fix`      | Bug fix                                                 |
+| `chore`    | Maintenance, tooling, dependencies                      |
+| `docs`     | Documentation only                                      |
 | `refactor` | Code change that neither fixes a bug nor adds a feature |
-| `test` | Adding or updating tests |
-| `ci` | CI/CD configuration |
+| `test`     | Adding or updating tests                                |
+| `ci`       | CI/CD configuration                                     |
 
 ---
 
@@ -111,18 +111,18 @@ Conventional commits enable automated changelogs and release notes. Versioning a
 
 Use a small taxonomy:
 
-| Type | Purpose |
-|---|---|
-| **Feature** | New capability |
-| **Bug** | Something broken |
-| **Chore** | Maintenance, upgrades, housekeeping |
-| **Spike** | Research or investigation |
-| **Release** | Release coordination |
-| **Incident** | Production issue |
+| Type         | Purpose                             |
+| ------------ | ----------------------------------- |
+| **Feature**  | New capability                      |
+| **Bug**      | Something broken                    |
+| **Chore**    | Maintenance, upgrades, housekeeping |
+| **Spike**    | Research or investigation           |
+| **Release**  | Release coordination                |
+| **Incident** | Production issue                    |
 
 ### Lifecycle
 
-```
+```text
 Backlog → Ready → In Progress → In Review → Verified → Done
 ```
 
@@ -155,19 +155,19 @@ CI should answer: **"Is this change good enough to integrate?"**
 
 The rules, collected. Rules marked with a tier apply from that tier upward.
 
-| # | Rule | Tier |
-|---|---|---|
-| 1 | No long-lived feature branches | All |
-| 2 | One branch, one concern | All |
-| 3 | Use conventional commits | All |
-| 4 | Rebase or squash before merge | All |
-| 5 | `main` is always the source of truth | All |
-| 6 | No direct commits to `main` (except small changes in Tier 1) | Tier 2+ |
-| 7 | Branch names must map to issues | Tier 2+ |
-| 8 | PR required for every change | Tier 2+ |
-| 9 | PR must explain why, not just what | Tier 2+ |
-| 10 | PR must link an issue | Tier 2+ |
-| 11 | PR must pass CI | Tier 2+ |
-| 12 | PR must be reviewable in one sitting | Tier 2+ |
-| 13 | PRs older than a few days should be reconsidered or split | Tier 2+ |
-| 14 | Peer review required (not just self-review) | Tier 3 |
+| #   | Rule                                                         | Tier    |
+| --- | ------------------------------------------------------------ | ------- |
+| 1   | No long-lived feature branches                               | All     |
+| 2   | One branch, one concern                                      | All     |
+| 3   | Use conventional commits                                     | All     |
+| 4   | Rebase or squash before merge                                | All     |
+| 5   | `main` is always the source of truth                         | All     |
+| 6   | No direct commits to `main` (except small changes in Tier 1) | Tier 2+ |
+| 7   | Branch names must map to issues                              | Tier 2+ |
+| 8   | PR required for every change                                 | Tier 2+ |
+| 9   | PR must explain why, not just what                           | Tier 2+ |
+| 10  | PR must link an issue                                        | Tier 2+ |
+| 11  | PR must pass CI                                              | Tier 2+ |
+| 12  | PR must be reviewable in one sitting                         | Tier 2+ |
+| 13  | PRs older than a few days should be reconsidered or split    | Tier 2+ |
+| 14  | Peer review required (not just self-review)                  | Tier 3  |

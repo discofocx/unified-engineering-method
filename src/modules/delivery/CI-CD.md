@@ -8,15 +8,15 @@ Continuous integration, continuous delivery, and rollback.
 
 CI answers: **"Is this change good enough to integrate?"**
 
-| Step | Purpose |
-|---|---|
-| Format / lint | Code quality |
-| Unit tests | Correctness |
-| Integration tests | System behavior |
-| Static analysis | Safety |
-| Build / package | Artifact creation |
-| Generate artifacts | Deliverables |
-| Preview builds | Early feedback |
+| Step               | Purpose           |
+| ------------------ | ----------------- |
+| Format / lint      | Code quality      |
+| Unit tests         | Correctness       |
+| Integration tests  | System behavior   |
+| Static analysis    | Safety            |
+| Build / package    | Artifact creation |
+| Generate artifacts | Deliverables      |
+| Preview builds     | Early feedback    |
 
 ---
 
@@ -24,14 +24,14 @@ CI answers: **"Is this change good enough to integrate?"**
 
 CD answers: **"Can we safely move this artifact through environments and channels?"**
 
-| Step | Purpose |
-|---|---|
-| Deploy to environment | Runtime placement |
-| Smoke tests | Basic validation |
-| Gate promotion | Confidence checkpoint |
-| Rollback support | Safety net |
-| Publish release notes | Communication |
-| Publish binaries | Distribution |
+| Step                  | Purpose               |
+| --------------------- | --------------------- |
+| Deploy to environment | Runtime placement     |
+| Smoke tests           | Basic validation      |
+| Gate promotion        | Confidence checkpoint |
+| Rollback support      | Safety net            |
+| Publish release notes | Communication         |
+| Publish binaries      | Distribution          |
 
 ---
 

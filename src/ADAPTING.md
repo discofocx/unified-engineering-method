@@ -14,18 +14,18 @@ The framework defines three operational tiers. Every project falls into one.
 
 Projects with no external users (yet). You are the only developer and the only audience.
 
-| Concern | Adaptation |
-|---|---|
-| **Branches** | Short-lived branches recommended, but direct commits to `main` are acceptable for small changes |
-| **PRs** | Optional. Useful for self-review on larger changes, but not required for every commit |
-| **Issues** | Lightweight. TODOs, a simple list, or GitHub issues — whatever keeps you honest without slowing you down |
-| **Commits** | Conventional commits still recommended — they cost nothing and pay off if the project grows |
-| **CI** | Lint + test minimum. A passing `main` is still the goal |
-| **Channels** | `dev` + `stable` only |
-| **Environments** | Local + production (or none) |
-| **Release notes** | Tag message is enough |
-| **Hotfixes** | Fix on `main`, tag a new patch version |
-| **Artifacts** | May be informal (local builds), but still tag what you ship |
+| Concern           | Adaptation                                                                                               |
+| ----------------- | -------------------------------------------------------------------------------------------------------- |
+| **Branches**      | Short-lived branches recommended, but direct commits to `main` are acceptable for small changes          |
+| **PRs**           | Optional. Useful for self-review on larger changes, but not required for every commit                    |
+| **Issues**        | Lightweight. TODOs, a simple list, or GitHub issues — whatever keeps you honest without slowing you down |
+| **Commits**       | Conventional commits still recommended — they cost nothing and pay off if the project grows              |
+| **CI**            | Lint + test minimum. A passing `main` is still the goal                                                  |
+| **Channels**      | `dev` + `stable` only                                                                                    |
+| **Environments**  | Local + production (or none)                                                                             |
+| **Release notes** | Tag message is enough                                                                                    |
+| **Hotfixes**      | Fix on `main`, tag a new patch version                                                                   |
+| **Artifacts**     | May be informal (local builds), but still tag what you ship                                              |
 
 **The principle that still holds:** `main` is the source of truth, artifacts are immutable once shipped, tags mark releases.
 
@@ -37,18 +37,18 @@ Projects with no external users (yet). You are the only developer and the only a
 
 You are the only developer, but the project has real users or a client. Accountability and traceability matter.
 
-| Concern | Adaptation |
-|---|---|
-| **Branches** | Required. Every change gets a branch |
-| **PRs** | Required. The audit trail matters — clients, compliance, and your future self will thank you |
-| **Issues** | Required. Tracked work gives the client visibility and gives you a paper trail |
-| **Commits** | Conventional commits required. Changelog generation becomes valuable |
-| **CI** | Full pipeline — lint, test, build, static analysis |
-| **Channels** | `dev` + `beta` + `stable` |
-| **Environments** | Dev + staging + production |
-| **Release notes** | Required. Client communication, not just internal record |
-| **Hotfixes** | Branch from tag, full validation, patch release, merge back to `main` |
-| **Artifacts** | Formal. Traceable to commit, tag, and pipeline |
+| Concern           | Adaptation                                                                                   |
+| ----------------- | -------------------------------------------------------------------------------------------- |
+| **Branches**      | Required. Every change gets a branch                                                         |
+| **PRs**           | Required. The audit trail matters — clients, compliance, and your future self will thank you |
+| **Issues**        | Required. Tracked work gives the client visibility and gives you a paper trail               |
+| **Commits**       | Conventional commits required. Changelog generation becomes valuable                         |
+| **CI**            | Full pipeline — lint, test, build, static analysis                                           |
+| **Channels**      | `dev` + `beta` + `stable`                                                                    |
+| **Environments**  | Dev + staging + production                                                                   |
+| **Release notes** | Required. Client communication, not just internal record                                     |
+| **Hotfixes**      | Branch from tag, full validation, patch release, merge back to `main`                        |
+| **Artifacts**     | Formal. Traceable to commit, tag, and pipeline                                               |
 
 **The principle that still holds:** everything from Tier 1, plus full traceability and auditability.
 
@@ -60,18 +60,18 @@ You are the only developer, but the project has real users or a client. Accounta
 
 Multiple developers, real users. Coordination, review, and controlled rollout all matter.
 
-| Concern | Adaptation |
-|---|---|
-| **Branches** | Required. Strictly short-lived |
-| **PRs** | Required. Review by another human is the point |
-| **Issues** | Required. Team coordination demands tracked work with clear ownership |
-| **Commits** | Conventional commits required |
-| **CI** | Full pipeline |
-| **Channels** | `dev` + `canary` + `beta` + `stable` |
-| **Environments** | Dev + staging + production |
-| **Release notes** | Required. Team + user communication |
-| **Hotfixes** | Branch from tag, full flow, peer review even under pressure |
-| **Artifacts** | Formal with full provenance |
+| Concern           | Adaptation                                                            |
+| ----------------- | --------------------------------------------------------------------- |
+| **Branches**      | Required. Strictly short-lived                                        |
+| **PRs**           | Required. Review by another human is the point                        |
+| **Issues**        | Required. Team coordination demands tracked work with clear ownership |
+| **Commits**       | Conventional commits required                                         |
+| **CI**            | Full pipeline                                                         |
+| **Channels**      | `dev` + `canary` + `beta` + `stable`                                  |
+| **Environments**  | Dev + staging + production                                            |
+| **Release notes** | Required. Team + user communication                                   |
+| **Hotfixes**      | Branch from tag, full flow, peer review even under pressure           |
+| **Artifacts**     | Formal with full provenance                                           |
 
 **The principle that still holds:** everything from Tier 2, plus peer review and channel-based rollout.
 
@@ -81,20 +81,20 @@ Multiple developers, real users. Coordination, review, and controlled rollout al
 
 ### Tier Summary
 
-| | Solo / Personal | Solo / Consultancy | Small Team |
-|---|---|---|---|
-| PRs | Optional | Required (self-review) | Required (peer review) |
-| Issues | Lightweight | Required | Required |
-| Channels | `dev` + `stable` | `dev` + `beta` + `stable` | `dev` + `canary` + `beta` + `stable` |
-| Environments | Local + prod | Dev + staging + prod | Dev + staging + prod |
-| CI | Lint + test | Full pipeline | Full pipeline |
-| Release notes | Tag message | Required | Required |
-| Hotfixes | Fix on `main` | Branch from tag | Branch from tag + review |
-| **Toolchain** | Formatter + linter minimum | Full (formatter, linter, type checker, test runner) | Full, CI-enforced |
-| **Golden commands** | `fmt` + `test` minimum | All four (`fmt`, `lint`, `typecheck`, `test`, `ci`) | All, CI-enforced |
-| **Agent constraints** | CLAUDE.md with basic rules | CLAUDE.md + toolchain config | CLAUDE.md + toolchain config + review gates |
-| **Knowledge persistence** | README, inline comments | README + ADRs for significant decisions | README + ADRs + persistent plans + milestones |
-| **Session boundaries** | Flexible | Defined per issue | Strictly bounded per issue |
+|                           | Solo / Personal            | Solo / Consultancy                                  | Small Team                                    |
+| ------------------------- | -------------------------- | --------------------------------------------------- | --------------------------------------------- |
+| PRs                       | Optional                   | Required (self-review)                              | Required (peer review)                        |
+| Issues                    | Lightweight                | Required                                            | Required                                      |
+| Channels                  | `dev` + `stable`           | `dev` + `beta` + `stable`                           | `dev` + `canary` + `beta` + `stable`          |
+| Environments              | Local + prod               | Dev + staging + prod                                | Dev + staging + prod                          |
+| CI                        | Lint + test                | Full pipeline                                       | Full pipeline                                 |
+| Release notes             | Tag message                | Required                                            | Required                                      |
+| Hotfixes                  | Fix on `main`              | Branch from tag                                     | Branch from tag + review                      |
+| **Toolchain**             | Formatter + linter minimum | Full (formatter, linter, type checker, test runner) | Full, CI-enforced                             |
+| **Golden commands**       | `fmt` + `test` minimum     | All four (`fmt`, `lint`, `typecheck`, `test`, `ci`) | All, CI-enforced                              |
+| **Agent constraints**     | CLAUDE.md with basic rules | CLAUDE.md + toolchain config                        | CLAUDE.md + toolchain config + review gates   |
+| **Knowledge persistence** | README, inline comments    | README + ADRs for significant decisions             | README + ADRs + persistent plans + milestones |
+| **Session boundaries**    | Flexible                   | Defined per issue                                   | Strictly bounded per issue                    |
 
 ### Growing Between Tiers
 
@@ -108,21 +108,21 @@ The framework is designed so that moving up means **adding ceremony**, not restr
 
 Orthogonal to both tier and product type. Project class describes durability and quality requirements. See [Doctrine](DOCTRINE.md) for the full classification model.
 
-| Class | Name | Toolchain | Issues | CI | Knowledge |
-|---|---|---|---|---|---|
-| **0 — Scratchpad** | Throwaway experiments | Formatter only | No | No | None required |
-| **1 — Prototype** | Real structure, limited lifespan | Formatter + linter + tests | Optional | Optional | README |
-| **2 — Product Seed** | Intended to ship | Full toolchain | Required | Required | README + ADRs |
-| **3 — Long-Lived Product** | Durability matters | Full toolchain, enforced | Required | Required | README + ADRs + persistent plans |
+| Class                      | Name                             | Toolchain                  | Issues   | CI       | Knowledge                        |
+| -------------------------- | -------------------------------- | -------------------------- | -------- | -------- | -------------------------------- |
+| **0 — Scratchpad**         | Throwaway experiments            | Formatter only             | No       | No       | None required                    |
+| **1 — Prototype**          | Real structure, limited lifespan | Formatter + linter + tests | Optional | Optional | README                           |
+| **2 — Product Seed**       | Intended to ship                 | Full toolchain             | Required | Required | README + ADRs                    |
+| **3 — Long-Lived Product** | Durability matters               | Full toolchain, enforced   | Required | Required | README + ADRs + persistent plans |
 
 ### Class and Tier Together
 
-| | Solo / Personal | Solo / Consultancy | Small Team |
-|---|---|---|---|
-| **Class 0** | Common | Rare | Rare (spikes only) |
-| **Class 1** | Common | Common | Uncommon |
-| **Class 2** | Possible | Common | Common |
-| **Class 3** | Possible | Possible | Common |
+|             | Solo / Personal | Solo / Consultancy | Small Team         |
+| ----------- | --------------- | ------------------ | ------------------ |
+| **Class 0** | Common          | Rare               | Rare (spikes only) |
+| **Class 1** | Common          | Common             | Uncommon           |
+| **Class 2** | Possible        | Common             | Common             |
+| **Class 3** | Possible        | Possible           | Common             |
 
 A solo developer building a long-lived CLI tool is Tier 1, Class 3. A small team spiking a prototype is Tier 3, Class 0. The tier adds coordination ceremony; the class adds toolchain and knowledge ceremony.
 

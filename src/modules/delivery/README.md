@@ -19,11 +19,11 @@ This module governs artifacts, promotion, environments, channels, CI/CD, and rol
 
 ## Documents
 
-| Document | What it covers |
-|---|---|
-| [Artifacts](ARTIFACTS.md) | Build/release identity, deployment context, promotion model |
-| [Environments](ENVIRONMENTS.md) | Runtime targets, channels, risk lanes |
-| [CI-CD](CI-CD.md) | Integration validation, delivery movement, rollback |
+| Document                        | What it covers                                              |
+| ------------------------------- | ----------------------------------------------------------- |
+| [Artifacts](ARTIFACTS.md)       | Build/release identity, deployment context, promotion model |
+| [Environments](ENVIRONMENTS.md) | Runtime targets, channels, risk lanes                       |
+| [CI-CD](CI-CD.md)               | Integration validation, delivery movement, rollback         |
 
 ---
 

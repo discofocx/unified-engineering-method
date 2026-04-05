@@ -26,8 +26,8 @@ Content lives in `src/`. The root contains configuration and build tooling. The 
 
 ## Golden Commands
 
-- `make fmt` — Format all markdown
-- `make lint` — Lint all markdown
-- `make build` — Build the static site
-- `make serve` — Build and serve locally with live reload
-- `make ci` — Run fmt + lint + build (full validation surface)
+- `just fmt` — Format all markdown
+- `just lint` — Lint all markdown
+- `just build` — Build the static site
+- `just serve` — Build and serve locally with live reload
+- `just ci` — Run fmt + lint + build (full validation surface)

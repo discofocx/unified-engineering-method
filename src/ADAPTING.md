@@ -206,7 +206,7 @@ To adopt this framework for a specific project:
 2. **Pick your class.** Scratchpad, prototype, product seed, or long-lived product.
 3. **Start with the glossary.** Make sure everyone (including agents) agrees on the vocabulary.
 4. **Set up the toolchain.** Formatter, linter, type checker, test runner. See [Construction](modules/construction/).
-5. **Wire the golden commands.** `make fmt`, `make lint`, `make typecheck`, `make test`, `make ci`.
+5. **Wire the golden commands.** `just fmt`, `just lint`, `just typecheck`, `just test`, `just ci`.
 6. **Pick your merge policy.** Squash merge is the default recommendation.
 7. **Define your artifact type.** What does CI produce?
 8. **Map your environments.** What infrastructure do you deploy to?

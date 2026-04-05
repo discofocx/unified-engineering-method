@@ -159,7 +159,7 @@ The configured set of formatter, linter, type checker, and test runner for a pro
 
 ### Golden Command
 
-A canonical command in the project's validation surface. Standard set: `make fmt`, `make lint`, `make typecheck`, `make test`, `make ci`. The exact mechanism (Makefile, package.json scripts, just, task) varies; the stable names do not.
+A canonical command in the project's validation surface. Standard set: `just fmt`, `just lint`, `just typecheck`, `just test`, `just ci`. The recommended runner is [`just`](https://github.com/casey/just); alternatives include `make`, `package.json` scripts, or `task`. The mechanism varies; the stable names do not.
 
 ### Validation Surface
 
@@ -167,7 +167,7 @@ The complete set of golden commands that prove a change is integration-ready. Ru
 
 ### Local/CI Parity
 
-The property that local validation and CI validation run identical commands, identical tool versions, and identical configurations. If a developer runs `make ci` locally and gets the same result as the CI server, parity is achieved.
+The property that local validation and CI validation run identical commands, identical tool versions, and identical configurations. If a developer runs `just ci` locally and gets the same result as the CI server, parity is achieved.
 
 ### Scaffold
 

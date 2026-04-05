@@ -14,17 +14,18 @@ Every project should expose these commands:
 
 | Command          | Purpose                          |
 | ---------------- | -------------------------------- |
-| `make fmt`       | Run the formatter (fix mode)     |
-| `make lint`      | Run the linter                   |
-| `make typecheck` | Run the type checker             |
-| `make test`      | Run the test suite               |
-| `make ci`        | Run all of the above in sequence |
+| `just fmt`       | Run the formatter (fix mode)     |
+| `just lint`      | Run the linter                   |
+| `just typecheck` | Run the type checker             |
+| `just test`      | Run the test suite               |
+| `just ci`        | Run all of the above in sequence |
 
-The exact mechanism does not have to be `make`. It can be:
+The recommended runner is [`just`](https://github.com/casey/just) — a modern command runner designed for project tasks, not build systems. It requires no `.PHONY` boilerplate, has clear error messages, works cross-platform, and supports `just --list` for discoverability.
+
+Alternatives that also work:
 
 - `Makefile` targets
 - `package.json` scripts (`npm run fmt`, `npm run lint`, etc.)
-- `just` recipes
 - `task` targets (Taskfile)
 - Shell scripts in a `scripts/` directory
 
@@ -32,7 +33,7 @@ What matters is:
 
 1. **Stable names.** The commands do not change when the underlying tool changes.
 2. **One command, one concern.** Each golden command maps to one validation category.
-3. **Composable.** `make ci` runs all of them. Individual commands can be run alone.
+3. **Composable.** `just ci` runs all of them. Individual commands can be run alone.
 4. **Discoverable.** A new developer or agent can find them without reading implementation details.
 
 ### Why This Matters
@@ -43,7 +44,7 @@ Golden commands reduce cognitive branching. Instead of:
 
 The answer is always:
 
-> `make lint`, `make test`, `make typecheck`.
+> `just lint`, `just test`, `just typecheck`.
 
 This is powerful for both humans and agents. Agents, in particular, benefit from stable entry points because they eliminate a class of guessing errors.
 
@@ -53,7 +54,7 @@ This is powerful for both humans and agents. Agents, in particular, benefit from
 
 The **validation surface** is the complete set of golden commands that prove a change is integration-ready.
 
-Running `make ci` — or its equivalent — is the gate before any PR or commit to `main`.
+Running `just ci` — or its equivalent — is the gate before any PR or commit to `main`.
 
 ### What the Validation Surface Proves
 
@@ -96,14 +97,14 @@ If local validation and CI validation diverge:
 
 ### How to Achieve Parity
 
-1. **Same commands.** CI runs `make ci`. The developer runs `make ci`. No special CI-only flags.
+1. **Same commands.** CI runs `just ci`. The developer runs `just ci`. No special CI-only flags.
 2. **Same tool versions.** Pin tool versions in the project config (lock files, version constraints).
 3. **Same config files.** One `ruff.toml`, one `tsconfig.json`, one `.eslint.config.js`. No CI-specific overrides.
 4. **Same execution environment.** Use the project's dependency manager to run tools (`uv run`, `npx`, `cargo`), not globally installed versions.
 
 ### The Test
 
-If a developer can run `make ci` locally and get the same pass/fail result as the CI server, parity is achieved. If not, something is misconfigured.
+If a developer can run `just ci` locally and get the same pass/fail result as the CI server, parity is achieved. If not, something is misconfigured.
 
 ---
 
@@ -134,9 +135,9 @@ When scaffolding a new project:
 
 1. Choose tools for each category (see [Toolchain](TOOLCHAIN.md))
 2. Install and configure each tool
-3. Create the golden command entry points (`Makefile`, `package.json` scripts, etc.)
-4. Verify `make ci` passes on a clean project
-5. Wire CI to run `make ci` (or equivalent)
+3. Create the golden command entry points (`justfile`, `Makefile`, `package.json` scripts, etc.)
+4. Verify `just ci` passes on a clean project
+5. Wire CI to run `just ci` (or equivalent)
 6. Verify local and CI produce the same result
 
 The validation surface should be functional before the first line of application logic. This is the "constrain first, generate second" principle in practice.

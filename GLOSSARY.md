@@ -1,6 +1,6 @@
 # Glossary
 
-Ubiquitous language for the Unified Git Workflow. Define your vocabulary and half the confusion disappears.
+Ubiquitous language for the Deterministic Engineering Operating System. Define your vocabulary and half the confusion disappears.
 
 This glossary is the shared contract. Every document in this framework uses these terms with these meanings. Agents, automation, and team members should interpret them identically.
 
@@ -128,3 +128,60 @@ These three identifiers are related but not identical:
 | **Git commit** | Source |
 | **Artifact** | Build output |
 | **Tag** | Release intent |
+
+---
+
+## Construction
+
+### Toolchain
+The configured set of formatter, linter, type checker, and test runner for a project. The enforcement layer that turns principles into automated checks.
+
+### Golden Command
+A canonical command in the project's validation surface. Standard set: `make fmt`, `make lint`, `make typecheck`, `make test`, `make ci`. The exact mechanism (Makefile, package.json scripts, just, task) varies; the stable names do not.
+
+### Validation Surface
+The complete set of golden commands that prove a change is integration-ready. Running the full validation surface is the gate before any PR or commit to `main`.
+
+### Local/CI Parity
+The property that local validation and CI validation run identical commands, identical tool versions, and identical configurations. If a developer runs `make ci` locally and gets the same result as the CI server, parity is achieved.
+
+### Scaffold
+The initial project structure, configuration, and toolchain setup that constrains subsequent work. A well-scaffolded project makes the default path the correct path. Scaffolding happens before the first line of application logic.
+
+### Bounded Task
+A unit of work scoped to be completable and validatable in a single focused session. Bounded tasks have clear entry criteria (the issue) and clear exit criteria (validation passes, PR ready).
+
+### Project Class
+A classification of project durability and quality requirements. Classes range from 0 (scratchpad) through 3 (long-lived product). Class determines how much toolchain and ceremony apply. Orthogonal to operational tier.
+
+---
+
+## Agent Operations
+
+### Agent Execution Loop
+The standard construction cycle: select issue → inspect codebase → state plan → make focused changes → run validation → fix until clean → summarize deltas → prepare for integration. This loop applies whether the builder is a human or an agent.
+
+### Session
+A bounded interaction between an agent (or human) and a project. Context that does not persist beyond the session is ephemeral. Plans that matter beyond the session must enter the project system.
+
+### Constraint
+A toolchain-enforced rule that cannot be violated by accident. Constraints are the opposite of conventions: a convention depends on memory; a constraint depends on mechanism.
+
+### Shaped Corridor
+The operating environment created by toolchain configuration, project structure, and validation gates. An agent working inside a shaped corridor produces correct-by-default output because the incorrect paths are blocked.
+
+---
+
+## Knowledge
+
+### ADR (Architecture Decision Record)
+A document recording a significant technical decision, its context, and its consequences. ADRs are immutable records of a point-in-time decision. If the decision changes, a new ADR supersedes the old one.
+
+### Persistent Plan
+A plan that has been committed to the project system — GitHub issue, milestone, ADR, or repo document — rather than existing only in chat history or model context.
+
+### Context Debt
+Knowledge that exists in someone's head (or a chat log) but not in the project system. Context debt compounds silently: the original author knows why the code is structured a certain way; the next contributor does not.
+
+### Documentation
+Written artifacts in the repository that answer questions someone will actually have: setup instructions, architecture overview, ADRs, contribution conventions. Documentation should be useful, findable, current, and minimal.

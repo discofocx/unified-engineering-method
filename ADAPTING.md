@@ -1,6 +1,6 @@
 # Adapting
 
-How the framework scales by team shape, user exposure, and product type.
+How the framework scales by team shape, user exposure, product type, and project class.
 
 The principles are universal. The tactics flex.
 
@@ -90,12 +90,41 @@ Multiple developers, real users. Coordination, review, and controlled rollout al
 | CI | Lint + test | Full pipeline | Full pipeline |
 | Release notes | Tag message | Required | Required |
 | Hotfixes | Fix on `main` | Branch from tag | Branch from tag + review |
+| **Toolchain** | Formatter + linter minimum | Full (formatter, linter, type checker, test runner) | Full, CI-enforced |
+| **Golden commands** | `fmt` + `test` minimum | All four (`fmt`, `lint`, `typecheck`, `test`, `ci`) | All, CI-enforced |
+| **Agent constraints** | CLAUDE.md with basic rules | CLAUDE.md + toolchain config | CLAUDE.md + toolchain config + review gates |
+| **Knowledge persistence** | README, inline comments | README + ADRs for significant decisions | README + ADRs + persistent plans + milestones |
+| **Session boundaries** | Flexible | Defined per issue | Strictly bounded per issue |
 
 ### Growing Between Tiers
 
 Projects move up tiers. They rarely move down. When your personal project gets its first user, you are in Tier 2. When you add a second developer, you are in Tier 3.
 
 The framework is designed so that moving up means **adding ceremony**, not restructuring. If you followed conventional commits in Tier 1, your changelog is ready for Tier 2. If you tagged releases in Tier 2, your promotion model is ready for Tier 3.
+
+---
+
+## By Project Class
+
+Orthogonal to both tier and product type. Project class describes durability and quality requirements. See [Doctrine](DOCTRINE.md) for the full classification model.
+
+| Class | Name | Toolchain | Issues | CI | Knowledge |
+|---|---|---|---|---|---|
+| **0 — Scratchpad** | Throwaway experiments | Formatter only | No | No | None required |
+| **1 — Prototype** | Real structure, limited lifespan | Formatter + linter + tests | Optional | Optional | README |
+| **2 — Product Seed** | Intended to ship | Full toolchain | Required | Required | README + ADRs |
+| **3 — Long-Lived Product** | Durability matters | Full toolchain, enforced | Required | Required | README + ADRs + persistent plans |
+
+### Class and Tier Together
+
+| | Solo / Personal | Solo / Consultancy | Small Team |
+|---|---|---|---|
+| **Class 0** | Common | Rare | Rare (spikes only) |
+| **Class 1** | Common | Common | Uncommon |
+| **Class 2** | Possible | Common | Common |
+| **Class 3** | Possible | Possible | Common |
+
+A solo developer building a long-lived CLI tool is Tier 1, Class 3. A small team spiking a prototype is Tier 3, Class 0. The tier adds coordination ceremony; the class adds toolchain and knowledge ceremony.
 
 ---
 
@@ -174,12 +203,15 @@ Bending tactics is fine. Breaking principles means the framework is failing and 
 To adopt this framework for a specific project:
 
 1. **Pick your tier.** Solo/personal, solo/consultancy, or small team.
-2. **Start with the glossary.** Make sure everyone (including agents) agrees on the vocabulary.
-3. **Pick your merge policy.** Squash merge is the default recommendation.
-4. **Define your artifact type.** What does CI produce?
-5. **Map your environments.** What infrastructure do you deploy to?
-6. **Map your channels.** What audiences do you serve?
-7. **Define your promotion gates.** What checks must pass before promotion?
-8. **Document your exceptions.** What rules can bend and which cannot?
+2. **Pick your class.** Scratchpad, prototype, product seed, or long-lived product.
+3. **Start with the glossary.** Make sure everyone (including agents) agrees on the vocabulary.
+4. **Set up the toolchain.** Formatter, linter, type checker, test runner. See [Construction](modules/construction/).
+5. **Wire the golden commands.** `make fmt`, `make lint`, `make typecheck`, `make test`, `make ci`.
+6. **Pick your merge policy.** Squash merge is the default recommendation.
+7. **Define your artifact type.** What does CI produce?
+8. **Map your environments.** What infrastructure do you deploy to?
+9. **Map your channels.** What audiences do you serve?
+10. **Define your promotion gates.** What checks must pass before promotion?
+11. **Document your exceptions.** What rules can bend and which cannot?
 
-The framework is the skeleton. The tier sets the weight. Each project fills in the muscle.
+The framework is the skeleton. The tier and class set the weight. Each project fills in the muscle.

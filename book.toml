@@ -1,0 +1,11 @@
+[book]
+title = "Deterministic Engineering Operating System"
+authors = ["Gerardo Sorchini"]
+language = "en"
+src = "src"
+
+[build]
+build-dir = "book"
+
+[output.html]
+git-repository-url = "https://github.com/discofocx/unified-git-workflow"

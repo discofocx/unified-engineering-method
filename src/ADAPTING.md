@@ -102,6 +102,12 @@ Projects move up tiers. They rarely move down. When your personal project gets i
 
 The framework is designed so that moving up means **adding ceremony**, not restructuring. If you followed conventional commits in Tier 1, your changelog is ready for Tier 2. If you tagged releases in Tier 2, your promotion model is ready for Tier 3.
 
+### Mixed-Skill Teams
+
+A common real-world pattern: a team where some members are experienced engineers and others are newer developers or vibe coders using AI to produce code. The framework's principles — toolchain enforcement, golden commands, bounded tasks — become the equalizer. The toolchain does not care who wrote the code. It enforces the same standards regardless.
+
+Guidance for how the framework specifically supports mixed-skill collaboration is under development. See [issue #2](https://github.com/discofocx/unified-git-workflow/issues/2).
+
 ---
 
 ## By Project Class

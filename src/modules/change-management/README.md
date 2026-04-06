@@ -37,7 +37,7 @@ This is the workflow most teams think of when they think of "git workflow" — b
 
 ## Key Principle
 
-From the [Doctrine](../../DOCTRINE.md):
+From the [Principles](../../PRINCIPLES.md):
 
 > **Every meaningful change maps to an issue.** Work should be traceable and resumable.
 

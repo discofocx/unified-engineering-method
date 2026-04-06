@@ -1,4 +1,4 @@
-# Deterministic Engineering Operating System
+# Deterministic Engineering Framework
 
 > _Never trust memory when you can use mechanism._
 
@@ -61,9 +61,9 @@ In one sentence:
 
 ---
 
-## Doctrine
+## Principles
 
-These are non-negotiable principles. They apply across all modules. See [Doctrine](DOCTRINE.md) for the full treatment.
+These are non-negotiable. They apply across all modules. See [Principles](PRINCIPLES.md) for the full treatment.
 
 1. **Constrain first, generate second.** The scaffold and toolchain come before the first line of application logic.
 2. **Use tools for rules.** Anything enforceable by tooling should not rely on prompts or memory.
@@ -100,7 +100,7 @@ Not all projects deserve the same strictness on day one:
 | **2** | Product Seed       | Full toolchain. Issues required. CI wired.  |
 | **3** | Long-Lived Product | Everything. ADRs. Release channels. Review. |
 
-Class governs toolchain and ceremony. Tier governs coordination and review. They are orthogonal. See [Doctrine](DOCTRINE.md) for the full classification model.
+Class governs toolchain and ceremony. Tier governs coordination and review. They are orthogonal. See [Principles](PRINCIPLES.md) for the full classification model.
 
 ---
 
@@ -108,7 +108,7 @@ Class governs toolchain and ceremony. Tier governs coordination and review. They
 
 | Module                                          | What it covers                                                               |
 | ----------------------------------------------- | ---------------------------------------------------------------------------- |
-| [Doctrine](DOCTRINE.md)                         | First principles, project classification, the constraint-first philosophy    |
+| [Principles](PRINCIPLES.md)                     | First principles, project classification, the constraint-first philosophy    |
 | [Construction](modules/construction/)           | Toolchain selection, validation surface, agent execution loop, bounded tasks |
 | [Change Management](modules/change-management/) | Branching, PRs, commits, issues, merges, releases, tags, hotfixes, changelog |
 | [Delivery](modules/delivery/)                   | Artifacts, promotion, environments, channels, CI/CD, rollback                |
@@ -122,7 +122,7 @@ Class governs toolchain and ceremony. Tier governs coordination and review. They
 
 Whether you are a human adopting this framework or an AI agent consuming it, the reading order is the same:
 
-1. **[Doctrine](DOCTRINE.md)** — Understand the principles. Everything else follows from these.
+1. **[Principles](PRINCIPLES.md)** — Understand the principles. Everything else follows from these.
 2. **[Glossary](GLOSSARY.md)** — Learn the vocabulary. Use it consistently.
 3. **[Construction](modules/construction/)** — How to set up projects and build correctly.
 4. **[Change Management](modules/change-management/)** — Day-to-day development: branches, PRs, commits, issues.

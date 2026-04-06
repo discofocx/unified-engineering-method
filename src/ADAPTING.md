@@ -106,7 +106,7 @@ The framework is designed so that moving up means **adding ceremony**, not restr
 
 ## By Project Class
 
-Orthogonal to both tier and product type. Project class describes durability and quality requirements. See [Doctrine](DOCTRINE.md) for the full classification model.
+Orthogonal to both tier and product type. Project class describes durability and quality requirements. See [Principles](PRINCIPLES.md) for the full classification model.
 
 | Class                      | Name                             | Toolchain                  | Issues   | CI       | Knowledge                        |
 | -------------------------- | -------------------------------- | -------------------------- | -------- | -------- | -------------------------------- |

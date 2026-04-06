@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-A Deterministic Engineering Operating System — an opinionated framework for how software is conceived, constructed, validated, integrated, released, and evolved. Designed for consumption by humans and AI agents.
+A Deterministic Engineering Framework — an opinionated framework for how software is conceived, constructed, validated, integrated, released, and evolved. Designed for consumption by humans and AI agents.
 
 ## Project Structure
 
@@ -8,7 +8,7 @@ Content lives in `src/`. The root contains configuration and build tooling. The 
 
 ## Reading Order
 
-1. **[src/DOCTRINE.md](src/DOCTRINE.md)** — First principles. The seven non-negotiable principles and project classification.
+1. **[src/PRINCIPLES.md](src/PRINCIPLES.md)** — First principles. The seven non-negotiable principles and project classification.
 2. **[src/GLOSSARY.md](src/GLOSSARY.md)** — Ubiquitous language. Adopt this vocabulary exactly.
 3. **[src/modules/construction/](src/modules/construction/)** — How to approach building: toolchain selection, validation surface, agent execution loop.
 4. **[src/modules/change-management/](src/modules/change-management/)** — Day-to-day development: branches, PRs, commits, issues, releases.
@@ -18,7 +18,7 @@ Content lives in `src/`. The root contains configuration and build tooling. The 
 
 ## When Referencing This Framework
 
-- Determine which tier and project class apply to the target project (see src/ADAPTING.md and src/DOCTRINE.md)
+- Determine which tier and project class apply to the target project (see src/ADAPTING.md and src/PRINCIPLES.md)
 - Set up the toolchain before generating code (see src/modules/construction/)
 - Follow the tier-appropriate level of ceremony
 - Use the glossary terms consistently

@@ -39,7 +39,7 @@ Once code is merged, how does it become something a user can run? This module go
 
 ## Key Principle
 
-From the [Doctrine](../../DOCTRINE.md):
+From the [Principles](../../PRINCIPLES.md):
 
 > **Validation is mandatory, not optional.** The toolchain declares success, not the agent.
 

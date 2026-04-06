@@ -4,7 +4,7 @@
 
 ---
 
-- [Doctrine](DOCTRINE.md)
+- [Principles](PRINCIPLES.md)
 - [Glossary](GLOSSARY.md)
 
 ---

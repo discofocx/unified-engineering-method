@@ -123,7 +123,7 @@ The framework guarantees that every build is traceable to its source via the emb
 | -------------- | -------------------------------- | -------------- |
 | Git commit     | Source                           | Commit time    |
 | Build identity | Artifact provenance              | Build time     |
-| Tag            | Release intent                   | Promotion time |
+| Tag            | Release decision                 | Promotion time |
 | Alias          | Release identity on the artifact | Promotion time |
 
 These are related but not identical. The gap between build time and promotion time is where the aliasing model lives.

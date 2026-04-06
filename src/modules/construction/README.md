@@ -20,16 +20,16 @@ This module governs everything that happens before code reaches a pull request. 
 
 | Document                    | What it covers                                                 |
 | --------------------------- | -------------------------------------------------------------- |
-| [Toolchain](TOOLCHAIN.md)   | Toolchain selection doctrine — categories, not brands          |
+| [Toolchain](TOOLCHAIN.md)   | Toolchain selection principles — categories, not brands        |
 | [Validation](VALIDATION.md) | Golden commands, canonical validation surface, local/CI parity |
 
-The agent execution loop and bounded task doctrine are covered in this README below.
+The agent execution loop and bounded task patterns are covered in this README below.
 
 ---
 
 ## The Central Idea
 
-From the [Doctrine](../../DOCTRINE.md):
+From the [Principles](../../PRINCIPLES.md):
 
 > **The agent should not be trusted to remember standards that the toolchain can enforce.**
 
@@ -113,7 +113,7 @@ The scaffold is not boilerplate. It is the enforcement layer that makes every su
 
 ## Key Principles
 
-From the [Doctrine](../../DOCTRINE.md):
+From the [Principles](../../PRINCIPLES.md):
 
 1. **Constrain first, generate second.** Scaffold and toolchain before application logic.
 2. **Use tools for rules.** Formatters, linters, type checkers, test runners — not prompts.

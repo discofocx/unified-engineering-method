@@ -1,8 +1,8 @@
-# Doctrine
+# Principles
 
 First principles. Non-negotiable across all modules.
 
-Tactics flex; doctrine does not. If you find yourself working around a principle instead of applying it, the framework needs revision — not a workaround.
+Tactics flex; principles do not. If you find yourself working around a principle instead of applying it, the framework needs revision — not a workaround.
 
 ---
 
@@ -142,10 +142,10 @@ The unifying principles across all four:
 
 ---
 
-## Applying the Doctrine
+## Applying the Principles
 
 When evaluating any process decision, ask:
 
 > "Am I relying on memory, or on mechanism?"
 
-If the answer is memory — for a human or an agent — find the mechanism. That is the doctrine in one sentence.
+If the answer is memory — for a human or an agent — find the mechanism. That is the framework in one sentence.

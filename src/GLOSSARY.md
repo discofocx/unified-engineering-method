@@ -1,6 +1,6 @@
 # Glossary
 
-Ubiquitous language for the Deterministic Engineering Operating System. Define your vocabulary and half the confusion disappears.
+Ubiquitous language for the Deterministic Engineering Framework. Define your vocabulary and half the confusion disappears.
 
 This glossary is the shared contract. Every document in this framework uses these terms with these meanings. Agents, automation, and team members should interpret them identically.
 
@@ -136,6 +136,10 @@ Environments answer: **where is this running?**
 Channels answer: **who gets this and how risky is it?**
 
 A staging environment might host a release candidate. Production might host both canary and stable deployments. Internal builds may go to a dev environment but not be formal releases. Keep them separate.
+
+### Smoke Test
+
+A rapid validation of a deployed artifact. Smoke tests confirm that the artifact can start, respond, and perform critical functions in the target environment. They are not exhaustive — they verify that the deployment is fundamentally working.
 
 ---
 

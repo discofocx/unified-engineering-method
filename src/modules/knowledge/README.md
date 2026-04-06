@@ -108,7 +108,7 @@ Plans are the bridge between intent and execution. The question is always: where
 
 ---
 
-## Documentation Doctrine
+## Documentation Principles
 
 Documentation should be:
 
@@ -163,7 +163,7 @@ Context debt is not a crisis. It is an erosion. The knowledge workflow prevents 
 
 ## Key Principle
 
-From the [Doctrine](../../DOCTRINE.md):
+From the [Principles](../../PRINCIPLES.md):
 
 > **Future agents are also maintainers.** Write for the maintainer who arrives with no prior conversation history.
 

@@ -1,6 +1,6 @@
 # Glossary
 
-Ubiquitous language for the Deterministic Engineering Framework. Define your vocabulary and half the confusion disappears.
+Ubiquitous language for the Unified Engineering Method. Define your vocabulary and half the confusion disappears.
 
 This glossary is the shared contract. Every document in this framework uses these terms with these meanings. Agents, automation, and team members should interpret them identically.
 

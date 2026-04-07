@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "deterministic-engineering-os",
-  "description": "Deterministic Engineering Operating System — documentation toolchain",
+  "name": "unified-engineering-method",
+  "description": "The Unified Engineering Method — documentation toolchain",
   "devDependencies": {
     "markdownlint-cli2": "^0.22.0",
     "prettier": "^3.8.1"

@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-A Deterministic Engineering Framework — an opinionated framework for how software is conceived, constructed, validated, integrated, released, and evolved. Designed for consumption by humans and AI agents.
+The Unified Engineering Method — an opinionated method for how software is conceived, constructed, validated, integrated, released, and evolved. Designed for consumption by humans and AI agents.
 
 ## Project Structure
 

@@ -1,4 +1,4 @@
-# Golden commands for the Deterministic Engineering OS
+# Golden commands for the Unified Engineering Method
 
 fmt:
     npx prettier --write "src/**/*.md"

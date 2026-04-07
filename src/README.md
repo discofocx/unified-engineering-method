@@ -1,8 +1,8 @@
-# Deterministic Engineering Framework
+# The Unified Engineering Method
 
 > _Never trust memory when you can use mechanism._
 
-An opinionated framework for how software is conceived, constructed, validated, integrated, released, and evolved — by humans and AI agents alike.
+An opinionated method for how software is conceived, constructed, validated, integrated, released, and evolved — by humans and AI agents alike.
 
 This is not a universal template. It is a coherent operating model built on a pattern that keeps reappearing in healthy engineering: **constrain the environment, enforce standards through tooling, track work through issues, validate changes deterministically, promote immutable artifacts, and persist intent beyond any single session.**
 

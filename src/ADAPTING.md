@@ -106,7 +106,7 @@ The framework is designed so that moving up means **adding ceremony**, not restr
 
 A common real-world pattern: a team where some members are experienced engineers and others are newer developers or vibe coders using AI to produce code. The framework's principles — toolchain enforcement, golden commands, bounded tasks — become the equalizer. The toolchain does not care who wrote the code. It enforces the same standards regardless.
 
-Guidance for how the framework specifically supports mixed-skill collaboration is under development. See [issue #2](https://github.com/discofocx/unified-git-workflow/issues/2).
+Guidance for how the framework specifically supports mixed-skill collaboration is under development. See [issue #2](https://github.com/discofocx/unified-engineering-method/issues/2).
 
 ---
 

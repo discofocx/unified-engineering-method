@@ -117,7 +117,7 @@ Golden commands catch mechanical violations. But some things — architectural d
 
 The framework is exploring an **adversarial review gate**: a separate agent (or model) that reviews changes with a different objective than the builder. The builder optimizes for "does it work?" The reviewer optimizes for "how could this break?" This is the last line of defense before integration.
 
-_This section is under development. See [issue #1](https://github.com/discofocx/unified-git-workflow/issues/1) for the full discussion._
+_This section is under development. See [issue #1](https://github.com/discofocx/unified-engineering-method/issues/1) for the full discussion._
 
 ---
 

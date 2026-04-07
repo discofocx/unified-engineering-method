@@ -13,6 +13,7 @@
   - [Toolchain](modules/construction/TOOLCHAIN.md)
   - [Validation](modules/construction/VALIDATION.md)
 - [Change Management](modules/change-management/README.md)
+  - [Planning](modules/change-management/PLANNING.md)
   - [Workflow](modules/change-management/WORKFLOW.md)
   - [Releases](modules/change-management/RELEASES.md)
 - [Delivery](modules/delivery/README.md)

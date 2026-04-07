@@ -32,9 +32,17 @@ Returning an environment or channel to a previously known-good artifact. Rollbac
 
 ## Collaboration
 
+### Epic
+
+A coherent body of work that delivers a recognizable capability or outcome. Decomposes into 3–7 issues. The planning boundary — the level at which you define what is being built and why. Epics organize work logically; they do not map to branches.
+
 ### Issue
 
-A tracked piece of work. Types: **Feature**, **Bug**, **Chore**, **Spike**, **Release**, **Incident**. The atomic unit of planning.
+A tracked piece of work. Types: **Feature**, **Bug**, **Chore**, **Spike**, **Release**, **Incident**. The atomic unit of execution — each issue maps to one branch and one PR.
+
+### Decomposition
+
+The act of breaking an epic into independently mergeable issues. Good decomposition keeps branches short-lived, PRs reviewable, and progress incremental.
 
 ### PR (Pull Request)
 

@@ -8,6 +8,7 @@ This is the workflow most teams think of when they think of "git workflow" — b
 
 ## What This Module Covers
 
+- **Planning** — epics, decomposition policy, work hierarchy
 - **Branching** — short-lived branches, naming conventions, one branch per concern
 - **Pull requests** — review, CI validation, merge policy
 - **Commits** — conventional commit messages, prefix taxonomy
@@ -18,10 +19,11 @@ This is the workflow most teams think of when they think of "git workflow" — b
 
 ## Documents
 
-| Document                | What it covers                                           |
-| ----------------------- | -------------------------------------------------------- |
-| [Workflow](WORKFLOW.md) | Branching, PRs, commits, issues, merges — the daily loop |
-| [Releases](RELEASES.md) | Tags, versions, release flow, hotfixes, changelog, LTS   |
+| Document                | What it covers                                            |
+| ----------------------- | --------------------------------------------------------- |
+| [Planning](PLANNING.md) | Epics, decomposition policy, work hierarchy, traceability |
+| [Workflow](WORKFLOW.md) | Branching, PRs, commits, issues, merges — the daily loop  |
+| [Releases](RELEASES.md) | Tags, versions, release flow, hotfixes, changelog, LTS    |
 
 ---
 
@@ -41,4 +43,4 @@ From the [Principles](../../PRINCIPLES.md):
 
 > **Every meaningful change maps to an issue.** Work should be traceable and resumable.
 
-A PR without an issue is untracked work. A merge without CI is unvalidated integration. A release without a tag is an unnamed state. This module exists to prevent all three.
+A PR without an issue is untracked work. A merge without CI is unvalidated integration. A release without a tag is an unnamed state. An epic without decomposition is a plan without execution. This module exists to prevent all four.

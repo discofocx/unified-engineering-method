@@ -107,6 +107,8 @@ Conventional commits enable automated changelogs and release notes. Versioning a
 
 ## Issues
 
+Issues are the atomic unit of execution. Each issue maps to one branch and one PR. For how issues are organized into larger bodies of work, see [Planning](PLANNING.md).
+
 ### Types
 
 Use a small taxonomy:

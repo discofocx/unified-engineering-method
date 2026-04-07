@@ -4,6 +4,8 @@
 
 An opinionated method for how software is conceived, constructed, validated, integrated, released, and evolved — by humans and AI agents alike.
 
+> **Status:** Active development. The principles are stable; the modules are still evolving.
+
 ## What This Is
 
 A coherent engineering method that unifies four concerns into one operating model:

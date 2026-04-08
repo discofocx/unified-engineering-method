@@ -112,12 +112,11 @@ Good agentic coding is not "prompt better." It is "design the environment so the
 
 ### How Agents Consume the Method
 
-There is no special integration. The agent interacts with UEM through the same project files a human uses:
+There is no special integration. The agent interacts with UEM through three layers — the same ones a human uses:
 
-- **Toolchain configs** (linter rules, type checker settings) constrain what the agent can produce
-- **Golden commands** (`just ci`) give the agent a single entry point for validation
-- **Issues** give the agent scoped, traceable units of work
-- **Conventions files** (`CLAUDE.md`, `.cursorrules`, or equivalent) communicate project-specific expectations the toolchain cannot enforce
+- **Constraint layer** — toolchain configs (formatter, linter, type checker, test runner) enforce standards mechanically. The agent cannot produce code that violates them.
+- **Direction layer** — issues scope work into bounded tasks. Conventions files (`CLAUDE.md`, `.cursorrules`, or equivalent) communicate project-specific expectations that the toolchain cannot enforce.
+- **Validation layer** — golden commands (`just ci`) provide a single entry point for pass/fail verification. The agent runs them; the toolchain declares success.
 
 The method does not require a particular agent, IDE, or integration. Any agent that can read files, write code, and run shell commands can operate inside a UEM-shaped project. The environment does the constraining — the agent just needs to be pointed at it.
 

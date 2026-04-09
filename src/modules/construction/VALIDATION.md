@@ -68,6 +68,21 @@ Running `just ci` — or its equivalent — is the gate before any PR or commit 
 
 If all golden commands pass, the change is **mechanically valid**. It may still have design problems or incorrect logic that tests do not cover — but it has passed every automated check the project offers.
 
+### Constraint Hierarchy
+
+Not all validation failures are equally severe. The validation surface has a natural priority order — fix failures from the top down:
+
+| Level          | What it checks                 | Severity | Example                                  |
+| -------------- | ------------------------------ | -------- | ---------------------------------------- |
+| **Linguistic** | Types, compiler errors         | Highest  | Code cannot run. Nothing else matters.   |
+| **Stylistic**  | Formatting, lint rules         | High     | Code is inconsistent or has bad patterns |
+| **Functional** | Tests                          | High     | Code behaves incorrectly                 |
+| **Structural** | Architecture lints, modularity | Medium   | Code is organized poorly                 |
+
+The golden command execution order reflects this hierarchy: `fmt` → `lint` → `typecheck` → `test`. A type error is more fundamental than a style violation. A compiler failure makes test results meaningless.
+
+When triaging failures, work top-down. Fix linguistic errors first — they often cascade and resolve lower-level failures automatically.
+
 ### What the Validation Surface Does Not Prove
 
 - Correct architectural decisions
@@ -77,6 +92,22 @@ If all golden commands pass, the change is **mechanically valid**. It may still 
 - Performance adequacy
 
 These require human or agent judgment. The validation surface handles everything that can be checked mechanically.
+
+### Flaky Checks
+
+A flaky check — one that sometimes passes and sometimes fails on the same code — is worse than no check at all.
+
+The entire validation model depends on determinism: if golden commands pass, the change is mechanically valid. A flaky check breaks that contract. It erodes trust in the validation surface and trains developers and agents to ignore failures, retry until green, or dismiss red as noise.
+
+The rule:
+
+> **Fix, quarantine, or remove. Never ignore.**
+
+- **Fix** — find the root cause (timing, state leakage, external dependency) and make the check deterministic
+- **Quarantine** — move the flaky check out of the golden command path into a separate suite that runs but does not gate merges. Track it as a bug.
+- **Remove** — if the check cannot be made reliable and the coverage is not critical, delete it. A check that lies is worse than a gap you know about.
+
+Never retry-until-green. If the team or agent starts re-running `just ci` hoping for a different result, the validation surface has already failed.
 
 ---
 

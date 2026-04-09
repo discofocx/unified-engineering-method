@@ -288,6 +288,60 @@ Benefits start within days — the first time an agent produces code that passes
 
 ---
 
+## Anti-Patterns
+
+The framework defines what to do. This section defines what hollows it out — failure modes where the method is technically followed but produces none of its intended benefits. Each module has its own local anti-patterns (see [Planning](modules/change-management/PLANNING.md) and [Knowledge](modules/knowledge/README.md)). The patterns below are systemic — they cut across modules and erode the method as a whole.
+
+### Ceremony Theater
+
+**The failure:** Issues opened with empty descriptions. ADRs written after the decision is shipped. Sprint retrospectives where nothing changes. The form is followed; the substance is absent.
+
+**The signal:** If you removed the ceremony, nothing about how the team works would change. The issue board is a scoreboard, not a planning tool. The ADR folder is an archive, not a decision record.
+
+**The fix:** Fewer, sharper constraints. Replace review checklists with automated checks. If an issue description is empty, the issue is noise — close it or fill it. If an ADR is written post-hoc, call it a postmortem, not a decision record.
+
+### The Golden Lie
+
+**The failure:** A validation surface that passes when the code is broken. Skipped tests, disabled linter rules, `# type: ignore` on every line, `@pytest.mark.skip` on flaky tests. The golden commands run green. The product ships broken.
+
+**The signal:** `just ci` passes but bugs reach production. Test coverage is high but regressions are frequent. The validation surface has not failed in weeks — which means it has stopped detecting anything.
+
+**The fix:** The validation surface must be able to fail. If it cannot, it is not a constraint — it is decoration. Audit skipped tests quarterly. Treat broad linter suppressions (`noqa`, `eslint-disable-next-line` applied wholesale) as tech debt. A green CI that cannot catch a real bug is worse than no CI — it provides false confidence.
+
+### The Prompt Trap
+
+**The failure:** Fixing a recurring bug by prompting the agent more carefully instead of adding a constraint that catches the error mechanically. The same class of mistake appears, gets fixed manually, appears again. The human compensates with increasingly detailed prompts. The agent still forgets.
+
+**The signal:** You are writing the same feedback in code review more than twice. You are adding increasingly specific instructions to `CLAUDE.md` for issues that a linter rule, type annotation, or test would catch.
+
+**The fix:** If you are fixing the same class of bug twice, the problem is a missing constraint, not a prompting problem. Add the test. Add the type. Add the linter rule. Move enforcement from memory to tooling — that is the core doctrine.
+
+### Constraint Erosion
+
+**The failure:** Gradually weakening the toolchain to unblock work. Disabling strict mode to ship faster. Adding broad lint exceptions because the legacy code cannot comply. Loosening type checking because a dependency has bad types. Each change is small and justified. The cumulative effect is an unconstrained environment.
+
+**The signal:** The number of lint suppressions, type-ignore comments, or skipped tests trends upward over time. The constraint corridor that was set up in week one is unrecognizable by month three.
+
+**The fix:** Treat constraint removal like a ratchet release — it requires explicit justification. Log suppressions. Review them periodically. If a rule is suppressed more often than enforced, either fix the code or remove the rule honestly — do not leave a rule that is 80% disabled.
+
+### Knowledge Theater
+
+**The failure:** Documentation that exists but is never read. A project map from six months ago that describes a different architecture. A `CONTRIBUTING.md` that references a defunct workflow. ADRs that contradict the current implementation. The knowledge layer looks complete. It is actually misleading.
+
+**The signal:** New contributors (human or agent) read the docs and produce code that does not fit the current architecture. The project map sends agents to files that no longer exist. Someone says "just ignore that document, it is outdated."
+
+**The fix:** Wrong documentation is worse than no documentation. If a document is not maintained, delete it or mark it as archived. Apply the context-free contributor test: can someone with no prior context read your documentation and produce a correct first contribution? If not, the knowledge layer is failing.
+
+### The Ratchet Stall
+
+**The failure:** Adopting the ratchet principle in theory but never tightening it in practice. The baseline is set on day one. No new constraints are added. The codebase improves only in the areas that were already constrained. Everything else stays frozen.
+
+**The signal:** The same lint rules have been active for months with no additions. Test coverage has not moved. The `justfile` has not changed since setup. The team says "we are doing UEM" but the constraint corridor is the same width it was at adoption.
+
+**The fix:** Schedule periodic ratchet reviews. Every few weeks, ask: can we enable one more lint rule? Can we add tests to one more untested module? Can we remove one baseline suppression? The ratchet does not turn itself.
+
+---
+
 ## Governance and Exceptions
 
 Every framework needs an escape hatch.

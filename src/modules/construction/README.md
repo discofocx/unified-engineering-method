@@ -99,6 +99,44 @@ This is where ambiguity gets removed. A well-scaffolded project constrains the s
 
 The scaffold is not boilerplate. It is the enforcement layer that makes every subsequent change automatically subject to the project's quality standards.
 
+### The Bootstrap Sequence
+
+The order matters. Scaffolding is not a checklist — it is a sequence with a gate.
+
+```text
+1. Create project structure     — directories, entry points, README
+2. Configure toolchain          — formatter, linter, type checker, test runner
+3. Wire golden commands         — just fmt, just lint, just typecheck, just test, just ci
+4. Verify: just ci passes       — on a clean project with no application code
+5. Wire CI                      — CI runs the same golden commands
+6. Begin application logic      — only after the gate passes
+```
+
+**The gate:** `just ci` must pass on a clean, empty project before the first line of application logic is written. This is what "constrain first, generate second" means in practice. If the constraints are not active before generation begins, they are not constraints — they are suggestions.
+
+### Agents and the Bootstrap
+
+Agents may generate the scaffold and toolchain configuration. This is not a violation of the method — the constraint is not "humans must write configs." It is "the golden command must pass on a clean project before the first line of app logic."
+
+An agent that sets up a `justfile`, configures `ruff`, wires `pytest`, and verifies `just ci` passes is doing the bootstrap correctly. An agent that starts writing application code and adds linting later is not.
+
+> **The rule is not who writes the config. The rule is that the config is active before generation begins.**
+
+### Configuration Immutability
+
+Toolchain configuration files — linter rules, type checker settings, formatter config, CI pipelines — define the shaped corridor. If an agent can widen the corridor at will, the constraint is illusory.
+
+The rule:
+
+> **Agents can propose code, but toolchain configuration changes require explicit justification.**
+
+An agent that loosens a lint rule or disables a type check to make its code pass is not fixing a problem — it is escaping the cage. The correct response is to fix the code, not the config.
+
+Tier-appropriate flexibility:
+
+- **Tier 1 (Solo/Personal):** Self-review of config changes is fine. You are the human approver.
+- **Tier 2+ (Consultancy/Team):** Configuration changes must be separate commits with explicit justification — not buried in feature work. The reviewer should be able to see exactly what changed in the corridor and why.
+
 ---
 
 ## Relationship to Other Modules

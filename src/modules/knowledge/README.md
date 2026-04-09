@@ -151,6 +151,99 @@ Context debt is not a crisis. It is an erosion. The knowledge workflow prevents 
 
 ---
 
+## The Context-Free Contributor Test
+
+A practical litmus test for whether intent has been sufficiently persisted:
+
+> **Could a new agent or human pick up this issue and complete it without reading the previous 50 messages of chat history?**
+
+If the answer is no, the knowledge workflow has a gap. The fix is not "write more docs." It is:
+
+- Update the issue description with current scope and decisions
+- Write an ADR if a non-obvious architectural choice was made
+- Ensure the branch and commit messages capture what happened so far
+- Add a comment to the issue summarizing where things stand
+
+This test applies at every handoff — between sessions, between agents, between team members. It is the operational form of Principle 7: "future agents are also maintainers."
+
+---
+
+## The Project Map
+
+A **project map** is an orientation document — not a file listing, but a narrative that explains how to think about the codebase.
+
+A README tells you how to set up the project. ADRs tell you why decisions were made. The project map tells you **where things live and how they connect** — the mental model a contributor needs before they can make changes confidently.
+
+A good project map answers:
+
+- What are the major components and how do they relate?
+- Where does the core logic live?
+- If I am changing X, what else is likely affected?
+- What are the boundaries I should not cross without an ADR?
+
+The format is flexible — a section in README.md, a standalone `ARCHITECTURE.md`, or equivalent. What matters is that it exists and stays current.
+
+| Project Class | Expectation                                            |
+| ------------- | ------------------------------------------------------ |
+| **Class 0–1** | Optional. The project is small enough to read directly |
+| **Class 2**   | Recommended. New contributors will need orientation    |
+| **Class 3**   | Expected. The project is too large to navigate by feel |
+
+The project map is a knowledge artifact, not a specification. It should be updated when the architecture changes — not as a bureaucratic exercise, but because an outdated map is worse than no map.
+
+---
+
+## Agent Instructions
+
+The ecosystem has conventions for agent instruction files — `CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`, and others. The framework does not invent a competing filename. It defines what a UEM-compliant instructions file should **contain**.
+
+### Content Contract
+
+A UEM agent instructions file should include:
+
+1. **Project identity** — project class and operational tier
+2. **Golden commands** — the exact commands for validation (`just fmt`, `just lint`, `just ci`, etc.)
+3. **Coding conventions** — patterns, naming, preferred libraries, and constraints the toolchain does not catch
+4. **Boundaries** — what the agent must not do (e.g., do not modify toolchain configs without approval, do not commit directly to main)
+5. **Orientation pointers** — where to find the project map, ADRs, and glossary
+6. **Issue discipline** — how issues should be linked, what commit conventions to follow
+
+### What Does Not Belong
+
+- Duplicated content from toolchain configs (the formatter already knows the rules)
+- Full architecture documentation (that belongs in the project map or ADRs)
+- Session-specific instructions (those belong in the issue or conversation)
+
+The instructions file is the bridge between the project's constraints and the agent's behavior. It communicates what the toolchain cannot enforce — expectations about judgment, scope, and collaboration that require understanding, not just compliance.
+
+---
+
+## How Agents Load Context
+
+Before writing code, an agent arriving at a UEM project should orient itself in a specific order:
+
+```text
+1. Read conventions file    — CLAUDE.md, .cursorrules, or equivalent
+2. Read project map         — ARCHITECTURE.md or equivalent orientation doc
+3. Read relevant ADRs       — decisions that govern the area of work
+4. Read the current issue   — scope, intent, acceptance criteria
+5. Inspect relevant code    — current state, patterns, related files
+```
+
+This is the Knowledge module's counterpart to the Construction module's [execution loop](../construction/). The execution loop assumes context is loaded. This sequence defines how.
+
+The depth scales by tier:
+
+| Tier                   | Minimum context load                          |
+| ---------------------- | --------------------------------------------- |
+| **Solo / Personal**    | Conventions file + current issue              |
+| **Solo / Consultancy** | Above + project map + relevant ADRs           |
+| **Small Team**         | Above + recent related PRs + team conventions |
+
+An agent that skips context-loading and starts generating code is doing the equivalent of a developer who opens a file and starts typing without understanding the codebase. The toolchain will catch some mistakes. It will not catch misalignment with intent, architecture, or conventions that require judgment.
+
+---
+
 ## Relationship to Other Modules
 
 **Construction** generates context. Every scaffolding decision, toolchain choice, and plan is knowledge that can persist or be lost.

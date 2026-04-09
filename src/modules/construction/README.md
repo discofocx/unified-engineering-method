@@ -74,6 +74,37 @@ A critical rule:
 
 The project system might be GitHub issues, ADRs, milestone documents, or docs in the repository. The form varies. But plans that live only in model context or chat history are ephemeral — they vanish when the session ends.
 
+### Human-Agent Collaboration
+
+Humans and agents have different strengths. Agents generate fast but lack judgment. Humans have judgment but are slower. The method works best when they complement each other.
+
+**Roles — Pilot and Navigator:**
+
+- **Pilot** — actively writing code or making decisions
+- **Navigator** — reviewing, guiding, catching what the other misses
+
+The roles swap fluidly. A human may pilot during architecture and navigate during implementation. An agent may pilot during boilerplate generation and navigate during code review. Neither role is permanent — they shift based on what the task requires.
+
+**Reviewing agent-generated work:**
+
+The golden command catches mechanical violations. What it does not catch is what the human reviewer should focus on:
+
+- **Intent alignment** — does the code match what was asked, not just what was described?
+- **Maintainability** — could a future contributor understand this without the conversation that produced it?
+- **Over-engineering** — did the agent add abstractions, utilities, or configurability nobody asked for?
+- **Naming and structure** — the linter catches style; the human catches clarity
+
+**The handoff:**
+
+When work transfers between human and agent — or between sessions — no context should live only in the conversation:
+
+- The **issue** captures scope, intent, and current state
+- The **branch** captures current code
+- The **commit messages** capture decisions made along the way
+- The **PR description** captures the summary for review
+
+If a session ends mid-task, the issue should be updated with where things stand. The [Context-Free Contributor test](../knowledge/) applies: could someone pick this up without reading the chat?
+
 ---
 
 ## Project Scaffolding

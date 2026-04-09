@@ -20,6 +20,32 @@ Runtime targets. Where something runs.
 - Same artifact moves across environments
 - Config differs by environment; code does not
 
+### Environment Parity
+
+The [Validation](../construction/VALIDATION.md) module mandates local/CI parity — the same golden commands run locally and in CI. But there is a second parity gap: the distance between CI and the delivery environment.
+
+The golden command passes locally and in CI. The artifact gets promoted. Then it hits a production environment with a different runtime version, a missing system dependency, or a configuration that does not exist in CI. This is environment drift — and it is where "it works on my machine" becomes "it worked in the pipeline."
+
+The principle:
+
+> **The environment used for validation should be as close as possible to the delivery environment.**
+
+Local/CI parity is the first layer. Delivery parity is the second.
+
+The mechanism varies by product type — the framework prescribes the principle, not the implementation:
+
+| Product type       | Parity mechanism                                                                    |
+| ------------------ | ----------------------------------------------------------------------------------- |
+| Server / container | Container images for build and delivery; same base image across environments        |
+| CLI tool           | Reproducible builds; pinned toolchains; CI builds on the same OS targets as release |
+| Desktop app        | SDK version pinning; consistent signing and packaging across environments           |
+| Mobile app         | Xcode / Android SDK version pinning; consistent build configurations                |
+| Library / package  | Lock files; pinned dependency versions; CI tests against supported runtimes         |
+
+Tools like Docker, Nix, reproducible build systems, and pinned SDK versions are all valid approaches. What matters is that the gap between "CI said yes" and "production works" is as small as you can make it.
+
+For projects with external runtime dependencies — drivers, third-party libraries, system packages — the parity challenge extends beyond the application. These dependencies should be documented, version-pinned where possible, and ideally verified as part of the deployment process. When they cannot be bundled, they become part of the deployment contract: the environment must provide them.
+
 ---
 
 ## Channels

@@ -104,9 +104,17 @@ The framework is designed so that moving up means **adding ceremony**, not restr
 
 ### Mixed-Skill Teams
 
-A common real-world pattern: a team where some members are experienced engineers and others are newer developers or vibe coders using AI to produce code. The framework's principles — toolchain enforcement, golden commands, bounded tasks — become the equalizer. The toolchain does not care who wrote the code. It enforces the same standards regardless.
+A common real-world pattern: a team where some members are experienced engineers and others are newer developers or vibe coders using AI to produce code.
 
-Guidance for how the framework specifically supports mixed-skill collaboration is under development. See [issue #2](https://github.com/discofocx/unified-engineering-method/issues/2).
+**What goes wrong without the framework:** Experienced engineers work from internalized standards — years of pattern recognition that they apply unconsciously. They might manage their own agent rules, their own linter configs, their own workflows. None of that transfers to vibe coders. You cannot compress 15 years of engineering judgment into a workshop. Without shared, enforced constraints, the vibe-coded contributions degrade the codebase while passing a code review that checks for style but not substance.
+
+**The constraint corridor as equalizer:** The toolchain does not care who wrote the code. When the constraint corridor is enforced — formatter, linter, type checker, tests, golden commands — every contribution passes the same bar. The vibe coder says _what_ they want. The agent reads the project protocol, scans the constraints, and produces compliant code. The vibe coder may not even realize the guardrails are there. Training wheels they never have to think about.
+
+**Agent instructions do not vary by user.** The `CLAUDE.md`, the toolchain config, the golden commands — these are project-level, not person-level. If the agent needs different instructions depending on who invoked it, the instructions are too weak. Strengthen the constraints; do not fork them.
+
+**Onboarding differs, toolchain does not.** The framework itself may benefit from different entry points for different experience levels — a senior engineer reads the principles and skips to construction; a vibe coder needs the "why" before the "how." But the actual toolchain setup, the golden commands, the constraint corridor — identical for everyone.
+
+**The skill floor is really an intent floor.** Below a certain threshold, the framework actively hurts — but the threshold is not about skill. It is about intent. Someone vibe coding for fun, with no users, no collaborators, no durability concerns, gains nothing from enforcing UEM. That is a Class 0 / Tier 1 project by definition. The framework does not apply because the project does not need it. The decision is about classification and tier, not about gatekeeping by experience level.
 
 ---
 
@@ -172,6 +180,111 @@ Orthogonal to team tier. A solo developer can ship a SaaS; a small team can ship
 - Artifact = platform-specific binaries, Homebrew formula, package
 - Channels may map to Homebrew taps, GitHub release tags, or install scripts
 - Distribution may involve multiple package managers simultaneously
+
+---
+
+## When Adoption Is Hard
+
+The framework describes the system as if everyone follows it, context is clean, and teams are aligned. Reality is messier.
+
+### What Kills Adoption
+
+Before AI, ceremony fell on humans. Writing issues, maintaining boards, running retrospectives — all of it consumed developer time that felt better spent shipping features. Producers became ceremony cops. Teams complied unevenly. The result was always the same: ceremony decayed into theater, then collapsed.
+
+The paradigm shift: AI handles ceremony. An agent writes the issue description, keeps the project map current, drafts the ADR. The human provides direction; the agent maintains the paper trail. When ceremony costs near-zero, the calculus changes — you can afford discipline because you are not paying for it with engineering hours.
+
+If your team cannot use AI for ceremony (policy restrictions, tooling gaps), expect adoption to require a dedicated human owner — a producer, tech lead, or rotating role — who treats process maintenance as real work, not overhead.
+
+### The Irreducible Core
+
+Under deadline pressure, what survives?
+
+**The construction loop.** Golden commands, the constraint corridor, the validate-before-commit cycle. Even a hotfix follows the loop. You do not need an epic to ship an emergency fix, but you do need the formatter, linter, and tests to pass before it merges.
+
+If you adopt exactly three things:
+
+1. **Agent protocol** — `CLAUDE.md` (or equivalent) that tells agents how to work in this codebase. This is level-zero setup.
+2. **Constraint corridor** — formatter, linter, type checker, tests, wired into golden commands and enforced by pre-commit hooks or CI.
+3. **Planning discipline** — work decomposed into epics and issues, vertical slices, every PR maps to an issue.
+
+Everything else is valuable but droppable in a crisis. These three are not.
+
+### Partial Adoption
+
+Teams often adopt some modules and skip others. This is fine — the framework is designed for it. The modules are loosely coupled:
+
+- **Construction alone** still improves code quality. Golden commands work without issues, ADRs, or delivery pipelines.
+- **Construction + Change Management** adds traceability. You know what changed, why, and who asked for it.
+- **Construction + Change Management + Delivery** adds predictable releases. Each layer compounds.
+- **Knowledge** operates above the other three — it feeds planning and captures decisions at any stage.
+
+What does not work: adopting Change Management or Delivery without Construction. If the constraint corridor is not enforced, traceability and release discipline are built on sand.
+
+### Ceremony Theater
+
+The failure mode where the form is followed but the substance is absent. Issues opened with empty descriptions. ADRs written after the decision is irreversible. Sprint retrospectives where nothing changes.
+
+The signal: if removing the ceremony would change nothing about how the team works, it is theater.
+
+The fix is not more ceremony — it is fewer, sharper constraints. A pre-commit hook that fails is worth more than a review checklist that gets rubber-stamped. Automate what you can enforce; drop what you cannot.
+
+---
+
+## From Chaos to Constraint
+
+Most teams are not starting fresh. They have existing codebases with zero ADRs, flaky tests, and no golden commands. This section is for them.
+
+### The Ratchet Principle
+
+You do not need 100% compliance on day one. You need a constraint that prevents regression:
+
+- "Test coverage cannot decrease from its current level."
+- "No new files without formatting."
+- "All new code must pass the linter, even if legacy code does not."
+
+The ratchet only turns one way. Each commit leaves the project slightly more constrained than before.
+
+If constraints feel wrong — too tight for what you are building, or too loose for what you need — the problem is usually classification, not the ratchet. A prototype classified as a long-lived product will feel over-constrained. A product classified as a prototype will feel reckless. Fix the classification; the constraints follow.
+
+### Accept the Baseline
+
+The biggest trap in brownfield migration: running the formatter and linter on a legacy codebase, seeing hundreds of violations, and spending days making old code compliant. It feels productive. It is a trap.
+
+Instead, accept the current state as baseline:
+
+- **Linter baselines** — most linters support baseline files (SwiftLint, ESLint `--no-error-on-unmatched-pattern`, Clippy `allow` attributes). Record current violations; enforce rules only on new code.
+- **Selective rule adoption** — start with rules that can auto-fix (formatting, import order). Add rules that require manual intervention only when you have capacity.
+- **Forward-only enforcement** — the pre-commit hook checks changed files, not the entire codebase.
+
+The goal: start enforcing UEM without rewriting the codebase. You will clean up legacy code over time, as you touch it. Not in a dedicated sprint that delays real work.
+
+### Module Adoption Order
+
+The order matters. For brownfield projects:
+
+1. **Knowledge** — understand what you are working with before you constrain it. Write a project map. Capture the current architecture, even if it is ugly. This gives agents (and new humans) the context they need.
+2. **Construction** — get the formatter and linter running with baselines. Wire golden commands. Immediate, visible, low-risk wins.
+3. **Change Management** — start tracking work in issues. Adopt conventional commits. Link PRs to issues.
+4. **Delivery** — automate what you are currently doing manually. This comes last because it builds on everything above.
+
+For greenfield projects, Construction comes first because there is no existing state to understand. For brownfield, Knowledge leads because you cannot constrain what you do not understand.
+
+### Class Transition
+
+Incrementally move a brownfield project up the class ladder:
+
+| Step | What you add                          | Class transition                  |
+| ---- | ------------------------------------- | --------------------------------- |
+| 1    | Formatter + baselines                 | Unconstrained → Class 0 compliant |
+| 2    | Linter + tests on new code            | → Class 1                         |
+| 3    | Full toolchain + issues + CI          | → Class 2                         |
+| 4    | ADRs + persistent plans + enforced CI | → Class 3                         |
+
+Each step is a PR, not a rewrite. Each step is reversible if it does not fit.
+
+### When the Ratchet Pays Off
+
+Benefits start within days — the first time an agent produces code that passes the constraint corridor, you see the difference in quality. But the compound payoff takes longer: fewer regressions, faster onboarding, predictable releases. These are measured in weeks and months, not days. The early cost (slower shipping while the corridor takes hold) is real. Frame it honestly with stakeholders — this is an investment, not a quick win.
 
 ---
 

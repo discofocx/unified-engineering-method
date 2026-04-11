@@ -286,6 +286,8 @@ Each step is a PR, not a rewrite. Each step is reversible if it does not fit.
 
 Benefits start within days — the first time an agent produces code that passes the constraint corridor, you see the difference in quality. But the compound payoff takes longer: fewer regressions, faster onboarding, predictable releases. These are measured in weeks and months, not days. The early cost (slower shipping while the corridor takes hold) is real. Frame it honestly with stakeholders — this is an investment, not a quick win.
 
+For a hands-on starting point, see the [Brownfield Audit quickstart](QUICKSTART-AUDIT.md).
+
 ---
 
 ## Anti-Patterns

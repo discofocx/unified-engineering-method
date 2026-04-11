@@ -26,3 +26,4 @@
 
 [Adapting](ADAPTING.md)
 [Agent Entry Point](AGENT.md)
+[Quickstart: Audit Your Project](QUICKSTART-AUDIT.md)

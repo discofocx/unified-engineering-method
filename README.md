@@ -29,6 +29,10 @@ The complete content lives in [`src/`](src/README.md).
 6. [Knowledge](src/modules/knowledge/) — ADRs, persistent planning, context debt
 7. [Adapting](src/ADAPTING.md) — operational tiers, project classes, product types
 
+## Already Have a Project?
+
+Skip the reading order. Use the [Brownfield Audit](src/QUICKSTART-AUDIT.md) — a prompt template that assesses your existing codebase and proposes a forward-only adoption plan.
+
 ## Build the Site
 
 ```

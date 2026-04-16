@@ -58,13 +58,16 @@ Running `just ci` — or its equivalent — is the gate before any PR or commit 
 
 ### What the Validation Surface Proves
 
-| Check               | What it proves                                                           |
-| ------------------- | ------------------------------------------------------------------------ |
-| Formatter passes    | Code style is consistent                                                 |
-| Linter passes       | No known bad patterns, no obvious mistakes, logging conventions enforced |
-| Type checker passes | Interfaces are honored, types are sound                                  |
-| Tests pass          | Behavior is correct, regressions are caught                              |
-| Build succeeds      | The project compiles / packages correctly                                |
+| Check                 | What it proves                                                                  |
+| --------------------- | ------------------------------------------------------------------------------- |
+| Formatter passes      | Code style is consistent                                                        |
+| Linter passes         | No known bad patterns, no obvious mistakes, logging conventions enforced        |
+| Type checker passes   | Interfaces are honored, types are sound                                         |
+| Tests pass            | Behavior is correct, regressions are caught                                     |
+| Build succeeds        | The project compiles / packages correctly                                       |
+| Config linting passes | CI workflows and infrastructure config are syntactically and semantically valid |
+
+The validation surface includes configuration files, not just source code. CI workflows, Docker configs, and infrastructure-as-code should be linted with the same rigor as application code. See [Toolchain — Conditional Categories](TOOLCHAIN.md#conditional-categories) and [Infrastructure as Code](../delivery/CI-CD.md#infrastructure-as-code).
 
 If all golden commands pass, the change is **mechanically valid**. It may still have design problems or incorrect logic that tests do not cover — but it has passed every automated check the project offers.
 

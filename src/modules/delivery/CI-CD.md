@@ -20,6 +20,49 @@ CI answers: **"Is this change good enough to integrate?"**
 
 ---
 
+## CI Workflow Structure
+
+> **One concern per workflow, same as one concern per golden command.**
+
+CI structure should mirror the [golden command](../construction/VALIDATION.md) structure. Each golden command maps to one validation concern. Each CI workflow should do the same.
+
+```text
+.github/workflows/
+  format.yml        # just fmt
+  lint.yml          # just lint
+  typecheck.yml     # just typecheck
+  test.yml          # just test
+  build.yml         # just build (artifact creation)
+  release.yml       # release automation
+```
+
+### Why Split
+
+A monolith workflow — one file, hundreds of lines, every check in a single job — creates the same problems as a monolith PR:
+
+- **Debugging is archaeology.** When CI fails, you dig through a wall of output to find which concern broke.
+- **Caching is coarse.** Different concerns have different dependency profiles. A format check does not need the test fixtures.
+- **Skipping is impossible.** A documentation-only change should not run the test suite. A monolith workflow runs everything or nothing.
+- **Agent maintenance is fragile.** An agent adding a new CI check to a 300-line workflow file must understand the entire file to splice correctly. A new file is self-contained.
+
+Split workflows are independently triggerable, independently debuggable, independently cacheable, and independently skippable.
+
+### Sharing Setup
+
+Split workflows often share setup steps — checkout, install dependencies, configure the runtime. The mechanism for sharing without duplication:
+
+- **GitHub Actions:** [reusable workflows](https://docs.github.com/en/actions/sharing-automations/reusing-workflows) or [composite actions](https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action)
+- **GitLab CI:** `include` templates and `extends`
+- **General:** a shared setup script that each workflow calls
+
+The principle: **share setup, not concerns.** A reusable workflow for "install Python and dependencies" is good. A reusable workflow for "run all checks" defeats the purpose of splitting.
+
+### When a Single Workflow Is Fine
+
+Class 0–1 projects where the entire CI is five lines — format, lint, test — do not benefit from splitting. The overhead of multiple files exceeds the complexity of the pipeline. Split when the pipeline outgrows a single screen.
+
+---
+
 ## CD Is About Movement
 
 CD answers: **"Can we safely move this artifact through environments and channels?"**

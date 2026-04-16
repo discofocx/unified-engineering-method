@@ -29,15 +29,31 @@ These are **categories, not brands**. The framework prescribes that you must hav
 
 Some categories are not universal — they apply based on project class.
 
-| Category               | What it enforces                       | When required | Examples                                            |
-| ---------------------- | -------------------------------------- | ------------- | --------------------------------------------------- |
-| **Structured logging** | Consistent, parseable telemetry output | Class 2+      | `structlog`, `tracing`, `pino`, `slog`, `swift-log` |
+| Category               | What it enforces                         | When required | Examples                                            |
+| ---------------------- | ---------------------------------------- | ------------- | --------------------------------------------------- |
+| **Structured logging** | Consistent, parseable telemetry output   | Class 2+      | `structlog`, `tracing`, `pino`, `slog`, `swift-log` |
+| **Config linting**     | CI and infrastructure config correctness | Class 2+      | `yamllint`, `actionlint`, `gitlab-ci-lint`          |
+
+### Structured Logging
 
 Structured logging is not a validation gate — there is no `just log` command. It is enforced through **linter rules** that ban raw output (`print()`, `console.log()` in production code) and require use of the project's configured logger.
 
 The distinction: the four core categories produce pass/fail validation results. Structured logging shapes what code is permitted. Its enforcement is mediated through the linter — it widens the linter's mandate, not the golden command set.
 
 Construction ensures the code **produces** structured telemetry. [Delivery](../delivery/CI-CD.md#observability) ensures someone **consumes** it.
+
+### Config Linting
+
+CI configuration files are code. The method's constraint-first philosophy applies to them, not just to source code. If an agent modifies a workflow file and the golden command does not catch a broken `uses:` reference, the constraint corridor has a hole.
+
+Two layers of config linting:
+
+| Layer                 | What it catches                                                       | Tool examples                                            |
+| --------------------- | --------------------------------------------------------------------- | -------------------------------------------------------- |
+| **YAML validation**   | Syntax errors, duplicate keys, indentation issues                     | `yamllint`                                               |
+| **Schema validation** | Semantic errors — invalid inputs, missing actions, broken expressions | `actionlint` (GitHub Actions), `gitlab-ci-lint` (GitLab) |
+
+Config linting **is** a validation gate. It should be included in `just lint` or exposed as `just lint-ci` — either way, it must be part of the [validation surface](VALIDATION.md). The validation surface includes configuration files, not just source code.
 
 ---
 
@@ -137,12 +153,12 @@ Pre-commit hooks are a convenience, not a security boundary. CI remains the auth
 
 ## When to Add vs. When to Skip
 
-| Project Class              | Formatter | Linter   | Type Checker | Test Runner | Structured Logging |
-| -------------------------- | --------- | -------- | ------------ | ----------- | ------------------ |
-| **0 — Scratchpad**         | Yes       | Optional | Optional     | Optional    | No                 |
-| **1 — Prototype**          | Yes       | Yes      | Optional     | Yes         | Optional           |
-| **2 — Product Seed**       | Yes       | Yes      | Yes          | Yes         | Yes                |
-| **3 — Long-Lived Product** | Yes       | Yes      | Yes          | Yes         | Yes                |
+| Project Class              | Formatter | Linter   | Type Checker | Test Runner | Structured Logging | Config Linting |
+| -------------------------- | --------- | -------- | ------------ | ----------- | ------------------ | -------------- |
+| **0 — Scratchpad**         | Yes       | Optional | Optional     | Optional    | No                 | No             |
+| **1 — Prototype**          | Yes       | Yes      | Optional     | Yes         | Optional           | Optional       |
+| **2 — Product Seed**       | Yes       | Yes      | Yes          | Yes         | Yes                | Yes            |
+| **3 — Long-Lived Product** | Yes       | Yes      | Yes          | Yes         | Yes                | Yes            |
 
 The formatter is never optional. Consistent formatting costs nothing and prevents the most common category of noise in diffs and reviews.
 
@@ -159,5 +175,6 @@ The toolchain exists so that neither the human nor the agent has to remember:
 - "Run the tests"
 - "Follow the import order"
 - "Use the logger, not print()"
+- "Validate the CI config before pushing"
 
 These become impossible to forget — because the toolchain catches them automatically. That is the point.

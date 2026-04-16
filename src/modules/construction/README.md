@@ -136,7 +136,7 @@ The order matters. Scaffolding is not a checklist — it is a sequence with a ga
 
 ```text
 1. Create project structure     — directories, entry points, README
-2. Configure toolchain          — formatter, linter, type checker, test runner
+2. Configure toolchain          — formatter, linter, type checker, test runner; for Class 2+, structured logging library and linter rules banning raw output
 3. Wire golden commands         — just fmt, just lint, just typecheck, just test, just ci
 4. Verify: just ci passes       — on a clean project with no application code
 5. Wire CI                      — CI runs the same golden commands
@@ -198,3 +198,4 @@ From the [Principles](../../PRINCIPLES.md):
 2. **Use tools for rules.** Formatters, linters, type checkers, test runners — not prompts.
 3. **Small bounded tasks beat giant one-shot generations.** The execution loop enforces this.
 4. **Validation is mandatory, not optional.** Golden commands are the gate.
+5. **Observability starts at construction.** Structured logging is enforced during construction through linter rules, not deferred to delivery. See [Toolchain — Conditional Categories](TOOLCHAIN.md#conditional-categories).

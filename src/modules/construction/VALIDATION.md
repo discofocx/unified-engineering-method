@@ -58,13 +58,13 @@ Running `just ci` — or its equivalent — is the gate before any PR or commit 
 
 ### What the Validation Surface Proves
 
-| Check               | What it proves                              |
-| ------------------- | ------------------------------------------- |
-| Formatter passes    | Code style is consistent                    |
-| Linter passes       | No known bad patterns, no obvious mistakes  |
-| Type checker passes | Interfaces are honored, types are sound     |
-| Tests pass          | Behavior is correct, regressions are caught |
-| Build succeeds      | The project compiles / packages correctly   |
+| Check               | What it proves                                                           |
+| ------------------- | ------------------------------------------------------------------------ |
+| Formatter passes    | Code style is consistent                                                 |
+| Linter passes       | No known bad patterns, no obvious mistakes, logging conventions enforced |
+| Type checker passes | Interfaces are honored, types are sound                                  |
+| Tests pass          | Behavior is correct, regressions are caught                              |
+| Build succeeds      | The project compiles / packages correctly                                |
 
 If all golden commands pass, the change is **mechanically valid**. It may still have design problems or incorrect logic that tests do not cover — but it has passed every automated check the project offers.
 

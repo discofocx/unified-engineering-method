@@ -25,6 +25,20 @@ Every project that ships code needs tools in these four categories:
 
 These are **categories, not brands**. The framework prescribes that you must have one in each category. It does not prescribe which one.
 
+## Conditional Categories
+
+Some categories are not universal — they apply based on project class.
+
+| Category               | What it enforces                       | When required | Examples                                            |
+| ---------------------- | -------------------------------------- | ------------- | --------------------------------------------------- |
+| **Structured logging** | Consistent, parseable telemetry output | Class 2+      | `structlog`, `tracing`, `pino`, `slog`, `swift-log` |
+
+Structured logging is not a validation gate — there is no `just log` command. It is enforced through **linter rules** that ban raw output (`print()`, `console.log()` in production code) and require use of the project's configured logger.
+
+The distinction: the four core categories produce pass/fail validation results. Structured logging shapes what code is permitted. Its enforcement is mediated through the linter — it widens the linter's mandate, not the golden command set.
+
+Construction ensures the code **produces** structured telemetry. [Delivery](../delivery/CI-CD.md#observability) ensures someone **consumes** it.
+
 ---
 
 ## Ecosystem Reference Stacks
@@ -33,54 +47,59 @@ These are examples, not mandates. Choose what fits your ecosystem and team.
 
 ### Python
 
-| Category        | Tool                | Config                                   |
-| --------------- | ------------------- | ---------------------------------------- |
-| Package manager | `uv`                | `pyproject.toml`                         |
-| Formatter       | `ruff format`       | `ruff.toml` or `pyproject.toml`          |
-| Linter          | `ruff check`        | `ruff.toml` or `pyproject.toml`          |
-| Type checker    | `mypy` or `pyright` | `pyproject.toml` or `pyrightconfig.json` |
-| Test runner     | `pytest`            | `pyproject.toml`                         |
-| Pre-commit      | `pre-commit`        | `.pre-commit-config.yaml`                |
+| Category           | Tool                     | Config                                   |
+| ------------------ | ------------------------ | ---------------------------------------- |
+| Package manager    | `uv`                     | `pyproject.toml`                         |
+| Formatter          | `ruff format`            | `ruff.toml` or `pyproject.toml`          |
+| Linter             | `ruff check`             | `ruff.toml` or `pyproject.toml`          |
+| Type checker       | `mypy` or `pyright`      | `pyproject.toml` or `pyrightconfig.json` |
+| Test runner        | `pytest`                 | `pyproject.toml`                         |
+| Structured logging | `structlog` or `logging` | logging config in app                    |
+| Pre-commit         | `pre-commit`             | `.pre-commit-config.yaml`                |
 
 ### Rust
 
-| Category        | Tool          | Config                        |
-| --------------- | ------------- | ----------------------------- |
-| Package manager | `cargo`       | `Cargo.toml`                  |
-| Formatter       | `rustfmt`     | `rustfmt.toml`                |
-| Linter          | `clippy`      | `clippy.toml` or `Cargo.toml` |
-| Type checker    | Rust compiler | Built-in                      |
-| Test runner     | `cargo test`  | Built-in                      |
+| Category           | Tool          | Config                        |
+| ------------------ | ------------- | ----------------------------- |
+| Package manager    | `cargo`       | `Cargo.toml`                  |
+| Formatter          | `rustfmt`     | `rustfmt.toml`                |
+| Linter             | `clippy`      | `clippy.toml` or `Cargo.toml` |
+| Type checker       | Rust compiler | Built-in                      |
+| Test runner        | `cargo test`  | Built-in                      |
+| Structured logging | `tracing`     | `Cargo.toml`                  |
 
 ### TypeScript
 
-| Category        | Tool               | Config                                 |
-| --------------- | ------------------ | -------------------------------------- |
-| Package manager | `pnpm` or `npm`    | `package.json`                         |
-| Formatter       | `prettier`         | `.prettierrc`                          |
-| Linter          | `eslint`           | `eslint.config.js`                     |
-| Type checker    | `tsc`              | `tsconfig.json`                        |
-| Test runner     | `vitest` or `jest` | `vitest.config.ts` or `jest.config.ts` |
+| Category           | Tool                | Config                                 |
+| ------------------ | ------------------- | -------------------------------------- |
+| Package manager    | `pnpm` or `npm`     | `package.json`                         |
+| Formatter          | `prettier`          | `.prettierrc`                          |
+| Linter             | `eslint`            | `eslint.config.js`                     |
+| Type checker       | `tsc`               | `tsconfig.json`                        |
+| Test runner        | `vitest` or `jest`  | `vitest.config.ts` or `jest.config.ts` |
+| Structured logging | `pino` or `winston` | logger config module                   |
 
 ### Swift
 
-| Category        | Tool                      | Config           |
-| --------------- | ------------------------- | ---------------- |
-| Package manager | Swift Package Manager     | `Package.swift`  |
-| Formatter       | `swift-format`            | `.swift-format`  |
-| Linter          | `swiftlint`               | `.swiftlint.yml` |
-| Type checker    | Swift compiler            | Built-in         |
-| Test runner     | `XCTest` or Swift Testing | Built-in         |
+| Category           | Tool                      | Config           |
+| ------------------ | ------------------------- | ---------------- |
+| Package manager    | Swift Package Manager     | `Package.swift`  |
+| Formatter          | `swift-format`            | `.swift-format`  |
+| Linter             | `swiftlint`               | `.swiftlint.yml` |
+| Type checker       | Swift compiler            | Built-in         |
+| Test runner        | `XCTest` or Swift Testing | Built-in         |
+| Structured logging | `swift-log` (`Logging`)   | `Package.swift`  |
 
 ### Go
 
-| Category        | Tool                  | Config          |
-| --------------- | --------------------- | --------------- |
-| Package manager | `go mod`              | `go.mod`        |
-| Formatter       | `gofmt` / `goimports` | Built-in        |
-| Linter          | `golangci-lint`       | `.golangci.yml` |
-| Type checker    | Go compiler           | Built-in        |
-| Test runner     | `go test`             | Built-in        |
+| Category           | Tool                     | Config          |
+| ------------------ | ------------------------ | --------------- |
+| Package manager    | `go mod`                 | `go.mod`        |
+| Formatter          | `gofmt` / `goimports`    | Built-in        |
+| Linter             | `golangci-lint`          | `.golangci.yml` |
+| Type checker       | Go compiler              | Built-in        |
+| Test runner        | `go test`                | Built-in        |
+| Structured logging | `slog` (stdlib) or `zap` | logger init     |
 
 ---
 
@@ -118,14 +137,16 @@ Pre-commit hooks are a convenience, not a security boundary. CI remains the auth
 
 ## When to Add vs. When to Skip
 
-| Project Class              | Formatter | Linter   | Type Checker | Test Runner |
-| -------------------------- | --------- | -------- | ------------ | ----------- |
-| **0 — Scratchpad**         | Yes       | Optional | Optional     | Optional    |
-| **1 — Prototype**          | Yes       | Yes      | Optional     | Yes         |
-| **2 — Product Seed**       | Yes       | Yes      | Yes          | Yes         |
-| **3 — Long-Lived Product** | Yes       | Yes      | Yes          | Yes         |
+| Project Class              | Formatter | Linter   | Type Checker | Test Runner | Structured Logging |
+| -------------------------- | --------- | -------- | ------------ | ----------- | ------------------ |
+| **0 — Scratchpad**         | Yes       | Optional | Optional     | Optional    | No                 |
+| **1 — Prototype**          | Yes       | Yes      | Optional     | Yes         | Optional           |
+| **2 — Product Seed**       | Yes       | Yes      | Yes          | Yes         | Yes                |
+| **3 — Long-Lived Product** | Yes       | Yes      | Yes          | Yes         | Yes                |
 
 The formatter is never optional. Consistent formatting costs nothing and prevents the most common category of noise in diffs and reviews.
+
+Structured logging becomes mandatory when the project has users (Class 2+). At that point, `print()` debugging is insufficient — you need parseable, leveled output that downstream systems can consume. For the delivery-side concern — consuming telemetry after deployment — see [Observability in CI/CD](../delivery/CI-CD.md#observability).
 
 ---
 
@@ -137,5 +158,6 @@ The toolchain exists so that neither the human nor the agent has to remember:
 - "Add type annotations"
 - "Run the tests"
 - "Follow the import order"
+- "Use the logger, not print()"
 
 These become impossible to forget — because the toolchain catches them automatically. That is the point.

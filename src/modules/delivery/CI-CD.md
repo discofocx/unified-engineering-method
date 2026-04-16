@@ -93,6 +93,8 @@ The framework prescribes the principle, not the tooling. What matters is that th
 
 Observability is usually an afterthought — treated as something for large teams with dedicated infrastructure. But the cost of not having it shows up as debugging sessions where you are asking users to send screenshots of error messages or manually inspecting log files. Wiring basic observability early — even just structured logging and crash reporting — pays off the moment someone other than you uses the software.
 
+For construction-side observability — enforcing logging conventions during development through linter rules — see [Toolchain — Conditional Categories](../construction/TOOLCHAIN.md#conditional-categories). Construction ensures the code **produces** structured telemetry. Delivery ensures someone **consumes** it.
+
 ---
 
 ## Infrastructure as Code

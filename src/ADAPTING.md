@@ -91,6 +91,7 @@ Multiple developers, real users. Coordination, review, and controlled rollout al
 | Release notes             | Tag message                | Required                                            | Required                                      |
 | Hotfixes                  | Fix on `main`              | Branch from tag                                     | Branch from tag + review                      |
 | **Toolchain**             | Formatter + linter minimum | Full (formatter, linter, type checker, test runner) | Full, CI-enforced                             |
+| **Structured logging**    | Not required               | Required for Class 2+                               | Required, CI-enforced                         |
 | **Golden commands**       | `fmt` + `test` minimum     | All four (`fmt`, `lint`, `typecheck`, `test`, `ci`) | All, CI-enforced                              |
 | **Agent constraints**     | CLAUDE.md with basic rules | CLAUDE.md + toolchain config                        | CLAUDE.md + toolchain config + review gates   |
 | **Knowledge persistence** | README, inline comments    | README + ADRs for significant decisions             | README + ADRs + persistent plans + milestones |
@@ -122,12 +123,12 @@ A common real-world pattern: a team where some members are experienced engineers
 
 Orthogonal to both tier and product type. Project class describes durability and quality requirements. See [Principles](PRINCIPLES.md) for the full classification model.
 
-| Class                      | Name                             | Toolchain                  | Issues   | CI       | Knowledge                        |
-| -------------------------- | -------------------------------- | -------------------------- | -------- | -------- | -------------------------------- |
-| **0 — Scratchpad**         | Throwaway experiments            | Formatter only             | No       | No       | None required                    |
-| **1 — Prototype**          | Real structure, limited lifespan | Formatter + linter + tests | Optional | Optional | README                           |
-| **2 — Product Seed**       | Intended to ship                 | Full toolchain             | Required | Required | README + ADRs                    |
-| **3 — Long-Lived Product** | Durability matters               | Full toolchain, enforced   | Required | Required | README + ADRs + persistent plans |
+| Class                      | Name                             | Toolchain                                     | Issues   | CI       | Knowledge                        |
+| -------------------------- | -------------------------------- | --------------------------------------------- | -------- | -------- | -------------------------------- |
+| **0 — Scratchpad**         | Throwaway experiments            | Formatter only                                | No       | No       | None required                    |
+| **1 — Prototype**          | Real structure, limited lifespan | Formatter + linter + tests                    | Optional | Optional | README                           |
+| **2 — Product Seed**       | Intended to ship                 | Full toolchain + structured logging           | Required | Required | README + ADRs                    |
+| **3 — Long-Lived Product** | Durability matters               | Full toolchain + structured logging, enforced | Required | Required | README + ADRs + persistent plans |
 
 ### Class and Tier Together
 

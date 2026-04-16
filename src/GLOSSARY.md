@@ -167,7 +167,11 @@ These three identifiers are related but not identical:
 
 ### Toolchain
 
-The configured set of formatter, linter, type checker, and test runner for a project. The enforcement layer that turns principles into automated checks.
+The configured set of formatter, linter, type checker, and test runner for a project, plus conditional categories (such as structured logging) based on project class. The enforcement layer that turns principles into automated checks.
+
+### Structured Logging
+
+A logging convention where output is machine-parseable (typically JSON), leveled (debug, info, warn, error), and produced through a configured logger rather than raw print statements. In UEM, structured logging is a conditional toolchain category — mandatory for Class 2+ projects. Enforcement is mediated through linter rules, not a separate golden command.
 
 ### Golden Command
 

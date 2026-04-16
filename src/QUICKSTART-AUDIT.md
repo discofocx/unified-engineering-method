@@ -94,7 +94,7 @@ Compare the current state against what the identified tier and class combination
 requires, according to UEM. Organize by module in the brownfield adoption order:
 
 1. **Knowledge** — project map, agent instructions, ADRs, documentation
-2. **Construction** — formatter, linter, type checker, test runner, golden commands, validation surface
+2. **Construction** — formatter, linter, type checker, test runner, structured logging (Class 2+), golden commands, validation surface
 3. **Change Management** — issue tracking, commit conventions, branch strategy, PR workflow
 4. **Delivery** — CI pipeline, tagged releases, artifact management, environments
 

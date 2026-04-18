@@ -15,6 +15,7 @@
 - [Change Management](modules/change-management/README.md)
   - [Planning](modules/change-management/PLANNING.md)
   - [Workflow](modules/change-management/WORKFLOW.md)
+  - [Labels](modules/change-management/LABELS.md)
   - [Releases](modules/change-management/RELEASES.md)
 - [Delivery](modules/delivery/README.md)
   - [Artifacts](modules/delivery/ARTIFACTS.md)

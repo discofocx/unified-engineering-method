@@ -61,13 +61,16 @@ Epics are **not** branches. An epic produces multiple issues, each with its own 
 | 3   | An epic with more than 7 issues should be split into epics | All     |
 | 4   | An epic with fewer than 3 issues is probably just an issue | All     |
 
-### GitHub Adaptation
+### Platform Adaptation
 
-GitHub does not have a native epic type. Use:
+An epic is a parent issue that decomposes into child issues. How to represent it depends on the platform:
 
-- A **parent issue** with the `epic` label as the epic
-- Child issues that reference the parent (`Part of #42`)
-- A task list in the parent issue body that tracks child issue completion
+- **GitHub** — use native sub-issues (parent ↔ child) for the hierarchy. Filter with `has:sub-issues-progress -has:parent-issue` to list epics, `has:parent-issue` to list sub-issues. Optionally apply the `type/epic` label on the parent if you want to filter by label alongside other `type/*` filters. See [Labels](LABELS.md).
+- **Jira** — use the native Epic issue type. The `type/epic` label is redundant.
+- **Linear** — use Projects, or parent-child issue relationships.
+- **Other platforms** — fall back to the `type/epic` label plus a task list in the parent.
+
+In all cases, child issues should reference the parent (e.g. `Part of #42`), and the parent should contain a task list tracking child completion.
 
 ```markdown
 ## Tasks

@@ -19,11 +19,12 @@ This is the workflow most teams think of when they think of "git workflow" — b
 
 ## Documents
 
-| Document                | What it covers                                            |
-| ----------------------- | --------------------------------------------------------- |
-| [Planning](PLANNING.md) | Epics, decomposition policy, work hierarchy, traceability |
-| [Workflow](WORKFLOW.md) | Branching, PRs, commits, issues, merges — the daily loop  |
-| [Releases](RELEASES.md) | Tags, versions, release flow, hotfixes, changelog, LTS    |
+| Document                | What it covers                                                       |
+| ----------------------- | -------------------------------------------------------------------- |
+| [Planning](PLANNING.md) | Epics, decomposition policy, work hierarchy, traceability            |
+| [Workflow](WORKFLOW.md) | Branching, PRs, commits, issues, merges — the daily loop             |
+| [Labels](LABELS.md)     | Label taxonomy, write-time vs read-time signals, platform adaptation |
+| [Releases](RELEASES.md) | Tags, versions, release flow, hotfixes, changelog, LTS               |
 
 ---
 

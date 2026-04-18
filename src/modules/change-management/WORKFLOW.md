@@ -4,6 +4,22 @@ Day-to-day development: branching, PRs, commits, issues, and merges.
 
 ---
 
+## Write-Time vs Read-Time Signals
+
+Three mechanisms describe the nature of work: **branch prefixes**, **commit prefixes**, and **labels**. They look redundant at a glance but operate at different points in the lifecycle.
+
+| Mechanism     | Scope                 | Answers                                                     |
+| ------------- | --------------------- | ----------------------------------------------------------- |
+| Branch prefix | One branch, lifetime  | What kind of work is happening here right now?              |
+| Commit prefix | One commit            | What kind of change is this line of history?                |
+| Label         | One issue, indefinite | How do I find, filter, or prioritize this across a backlog? |
+
+Branch and commit prefixes are **write-time** signals — they describe work as it is being done, then become history. Labels are **read-time** signals — before a branch exists, the label is the only way to answer "what bugs are open?" or "what is p0 this week?"
+
+The rule that keeps the system coherent: **the vocabulary matches across all three.** A `feat/` branch produces `feat:` commits on an issue tagged `type/feat`. No translation, no synonyms. See [Labels](LABELS.md) for the full label taxonomy.
+
+---
+
 ## Development Model
 
 **Trunk-based development with short-lived branches.**
@@ -31,14 +47,19 @@ This ages much better than classic GitFlow for modern CI/CD-heavy work.
 Keep it boring and systematic. Include the issue ID when possible.
 
 ```text
-feature/123-add-user-search
+feat/123-add-user-search
 fix/287-null-check-on-login
 chore/315-upgrade-openapi-generator
 spike/333-evaluate-rust-parser
+docs/350-clarify-release-flow
 hotfix/401-fix-prod-timeout
 ```
 
-Prefixes: `feature/`, `fix/`, `chore/`, `spike/`, `hotfix/`
+Prefixes: `feat/`, `fix/`, `chore/`, `spike/`, `docs/`, `hotfix/`
+
+`hotfix/` is kept distinct from `fix/` because it carries operational meaning — an urgent patch against a released version, often fast-tracked through a separate merge path. A normal bug fix, even a p0, is still `fix/`.
+
+The branch prefix must match the `type/*` label on the linked issue and the prefix on commits landing to the branch.
 
 ---
 
@@ -155,16 +176,7 @@ The goal is traceability, not bureaucracy. An issue takes seconds to create and 
 
 ### Types
 
-Use a small taxonomy:
-
-| Type         | Purpose                             |
-| ------------ | ----------------------------------- |
-| **Feature**  | New capability                      |
-| **Bug**      | Something broken                    |
-| **Chore**    | Maintenance, upgrades, housekeeping |
-| **Spike**    | Research or investigation           |
-| **Release**  | Release coordination                |
-| **Incident** | Production issue                    |
+Issue type is expressed via the `type/*` label (or the platform's native issue type where available). The vocabulary matches branch and commit prefixes exactly — a `type/feat` issue has a `feat/` branch and `feat:` commits. See [Labels](LABELS.md) for the full set.
 
 ### Lifecycle
 

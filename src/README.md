@@ -204,12 +204,12 @@ Projects move up tiers as they grow. The framework adds ceremony without restruc
 
 Not all projects deserve the same strictness on day one:
 
-| Class | Name               | Ceremony                                    |
-| ----- | ------------------ | ------------------------------------------- |
-| **0** | Scratchpad         | Minimal. Formatter + basic structure.       |
-| **1** | Prototype          | Linter + tests.                             |
-| **2** | Product Seed       | Full toolchain. CI wired.                   |
-| **3** | Long-Lived Product | Everything. ADRs. Release channels. Review. |
+| Class | Name               | Ceremony                                                              |
+| ----- | ------------------ | --------------------------------------------------------------------- |
+| **0** | Scratchpad         | Minimal. Formatter + basic structure.                                 |
+| **1** | Prototype          | Linter + tests.                                                       |
+| **2** | Product Seed       | Full toolchain. CI wired.                                             |
+| **3** | Long-Lived Product | Enforced toolchain. ADRs + persistent plans. Full promotion pipeline. |
 
 Class governs toolchain, validation, and knowledge ceremony. Tier governs coordination: issues, PRs, and review. They are orthogonal. See [Principles](PRINCIPLES.md) for the full classification model.
 

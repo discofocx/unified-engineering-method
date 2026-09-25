@@ -96,12 +96,12 @@ Write for the maintainer who arrives with no prior conversation history.
 
 Not all projects deserve the same level of ceremony on day one. The framework scales by **project class**.
 
-| Class | Name               | Description                                                     | Typical Ceremony                            |
-| ----- | ------------------ | --------------------------------------------------------------- | ------------------------------------------- |
-| **0** | Scratchpad         | Throwaway experiments, spikes, learning exercises               | Minimal. Formatter + basic structure.       |
-| **1** | Prototype          | Real structure, basic toolchain, limited expected lifespan      | Linter + tests.                             |
-| **2** | Product Seed       | Intended to ship or serve users. Full toolchain from the start. | Full validation surface. CI wired.          |
-| **3** | Long-Lived Product | Multiple contributors, real users, durability matters           | Everything. ADRs. Release channels. Review. |
+| Class | Name               | Description                                                     | Typical Ceremony                                                      |
+| ----- | ------------------ | --------------------------------------------------------------- | --------------------------------------------------------------------- |
+| **0** | Scratchpad         | Throwaway experiments, spikes, learning exercises               | Minimal. Formatter + basic structure.                                 |
+| **1** | Prototype          | Real structure, basic toolchain, limited expected lifespan      | Linter + tests.                                                       |
+| **2** | Product Seed       | Intended to ship or serve users. Full toolchain from the start. | Full validation surface. CI wired.                                    |
+| **3** | Long-Lived Product | Maintained and evolved for years; durability matters            | Enforced toolchain. ADRs + persistent plans. Full promotion pipeline. |
 
 ### Rules
 

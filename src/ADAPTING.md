@@ -123,12 +123,12 @@ A common real-world pattern: a team where some members are experienced engineers
 
 Orthogonal to both tier and product type. Project class describes durability and quality requirements. See [Principles](PRINCIPLES.md) for the full classification model.
 
-| Class                      | Name                             | Toolchain                                     | Issues   | CI       | Knowledge                        |
-| -------------------------- | -------------------------------- | --------------------------------------------- | -------- | -------- | -------------------------------- |
-| **0 — Scratchpad**         | Throwaway experiments            | Formatter only                                | No       | No       | None required                    |
-| **1 — Prototype**          | Real structure, limited lifespan | Formatter + linter + tests                    | Optional | Optional | README                           |
-| **2 — Product Seed**       | Intended to ship                 | Full toolchain + structured logging           | Required | Required | README + ADRs                    |
-| **3 — Long-Lived Product** | Durability matters               | Full toolchain + structured logging, enforced | Required | Required | README + ADRs + persistent plans |
+| Class                      | Name                             | Toolchain                                     | CI       | Knowledge                        |
+| -------------------------- | -------------------------------- | --------------------------------------------- | -------- | -------------------------------- |
+| **0 — Scratchpad**         | Throwaway experiments            | Formatter only                                | No       | None required                    |
+| **1 — Prototype**          | Real structure, limited lifespan | Formatter + linter + tests                    | Optional | README                           |
+| **2 — Product Seed**       | Intended to ship                 | Full toolchain + structured logging           | Required | README + ADRs                    |
+| **3 — Long-Lived Product** | Durability matters               | Full toolchain + structured logging, enforced | Required | README + ADRs + persistent plans |
 
 ### Class and Tier Together
 
@@ -139,7 +139,7 @@ Orthogonal to both tier and product type. Project class describes durability and
 | **Class 2** | Possible        | Common             | Common             |
 | **Class 3** | Possible        | Possible           | Common             |
 
-A solo developer building a long-lived CLI tool is Tier 1, Class 3. A small team spiking a prototype is Tier 3, Class 0. The tier adds coordination ceremony; the class adds toolchain and knowledge ceremony.
+A solo developer building a long-lived CLI tool is Tier 1, Class 3. A small team spiking a prototype is Tier 3, Class 0. The tier adds coordination ceremony (issues, PRs, review); the class adds toolchain and knowledge ceremony.
 
 ---
 
@@ -278,7 +278,7 @@ Incrementally move a brownfield project up the class ladder:
 | ---- | ------------------------------------- | --------------------------------- |
 | 1    | Formatter + baselines                 | Unconstrained → Class 0 compliant |
 | 2    | Linter + tests on new code            | → Class 1                         |
-| 3    | Full toolchain + issues + CI          | → Class 2                         |
+| 3    | Full toolchain + CI                   | → Class 2                         |
 | 4    | ADRs + persistent plans + enforced CI | → Class 3                         |
 
 Each step is a PR, not a rewrite. Each step is reversible if it does not fit.

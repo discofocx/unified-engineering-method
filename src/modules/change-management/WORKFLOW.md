@@ -144,10 +144,12 @@ Issues are the atomic unit of execution. Each issue maps to one branch and one P
 
 Principle 4 says "every meaningful change maps to an issue" — but what counts as meaningful?
 
-| Project Class | Policy                                                                                    |
-| ------------- | ----------------------------------------------------------------------------------------- |
-| **Class 2–3** | If it is worth a commit, it is worth an issue. The overhead is minimal with good tooling. |
-| **Class 0–1** | Issues recommended for anything non-trivial. Direct commits acceptable for minor fixes.   |
+| Tier                                        | Policy                                                                                    |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **Tier 2–3** (Solo/Consultancy, Small Team) | If it is worth a commit, it is worth an issue. The overhead is minimal with good tooling. |
+| **Tier 1** (Solo/Personal)                  | Issues recommended for anything non-trivial. Direct commits acceptable for minor fixes.   |
+
+Issue requirements follow the tier, not the project class. Issues exist for coordination and accountability — to other developers, clients, or users. A solo developer on a Class 3 product still gets the full toolchain, but not team-grade issue discipline.
 
 **The test:** "Would a future contributor wonder why this changed?" If yes, it needs an issue. If it is a mechanical fix — a typo, a formatting correction, a dependency bump with no behavior change — a clear commit message is sufficient.
 

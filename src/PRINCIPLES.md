@@ -96,12 +96,12 @@ Write for the maintainer who arrives with no prior conversation history.
 
 Not all projects deserve the same level of ceremony on day one. The framework scales by **project class**.
 
-| Class | Name               | Description                                                     | Typical Ceremony                                    |
-| ----- | ------------------ | --------------------------------------------------------------- | --------------------------------------------------- |
-| **0** | Scratchpad         | Throwaway experiments, spikes, learning exercises               | Minimal. Formatter + basic structure.               |
-| **1** | Prototype          | Real structure, basic toolchain, limited expected lifespan      | Linter + tests. Issues optional.                    |
-| **2** | Product Seed       | Intended to ship or serve users. Full toolchain from the start. | Full validation surface. Issues required. CI wired. |
-| **3** | Long-Lived Product | Multiple contributors, real users, durability matters           | Everything. ADRs. Release channels. Review.         |
+| Class | Name               | Description                                                     | Typical Ceremony                            |
+| ----- | ------------------ | --------------------------------------------------------------- | ------------------------------------------- |
+| **0** | Scratchpad         | Throwaway experiments, spikes, learning exercises               | Minimal. Formatter + basic structure.       |
+| **1** | Prototype          | Real structure, basic toolchain, limited expected lifespan      | Linter + tests.                             |
+| **2** | Product Seed       | Intended to ship or serve users. Full toolchain from the start. | Full validation surface. CI wired.          |
+| **3** | Long-Lived Product | Multiple contributors, real users, durability matters           | Everything. ADRs. Release channels. Review. |
 
 ### Rules
 
@@ -116,7 +116,7 @@ A project that starts as a Class 0 scratchpad and grows into a Class 2 product s
 
 - **Class 0**: Formatter configured, basic project structure
 - **→ Class 1**: Add linter, add test runner, start writing tests
-- **→ Class 2**: Add type checker, wire CI, require issues for all changes, set up golden commands
+- **→ Class 2**: Add type checker, wire CI, set up golden commands
 
 Each step is a commit or two, not a rewrite. The code doesn't change — the constraints around it tighten.
 
@@ -127,7 +127,7 @@ Each step is a commit or two, not a rewrite. The code doesn't change — the con
 - A solo developer can build a Class 3 long-lived product (Tier 1, Class 3)
 - A small team can spike a throwaway prototype (Tier 3, Class 0)
 
-Class governs how much toolchain and ceremony. Tier governs how much coordination and review.
+Class governs toolchain, validation, and knowledge ceremony. Tier governs coordination: issues, PRs, and review. A solo developer on a long-lived product needs a strong toolchain, not team-grade issue discipline.
 
 ---
 

@@ -207,11 +207,11 @@ Not all projects deserve the same strictness on day one:
 | Class | Name               | Ceremony                                    |
 | ----- | ------------------ | ------------------------------------------- |
 | **0** | Scratchpad         | Minimal. Formatter + basic structure.       |
-| **1** | Prototype          | Linter + tests. Issues optional.            |
-| **2** | Product Seed       | Full toolchain. Issues required. CI wired.  |
+| **1** | Prototype          | Linter + tests.                             |
+| **2** | Product Seed       | Full toolchain. CI wired.                   |
 | **3** | Long-Lived Product | Everything. ADRs. Release channels. Review. |
 
-Class governs toolchain and ceremony. Tier governs coordination and review. They are orthogonal. See [Principles](PRINCIPLES.md) for the full classification model.
+Class governs toolchain, validation, and knowledge ceremony. Tier governs coordination: issues, PRs, and review. They are orthogonal. See [Principles](PRINCIPLES.md) for the full classification model.
 
 ---
 
